@@ -1,0 +1,316 @@
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Force refresh - 2024 */
+
+/* Import Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+/* Custom Footer Styles */
+
+.custom-footer {
+    background-color: #007b5e !important; /* Dark teal background */
+    color: #ffffff !important;
+}
+
+/* Footer widgets wrapper - same background */
+.footer-widgets-wrapper.custom-footer {
+    background-color: #007b5e !important;
+    color: #ffffff !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+/* Remove any default spacing from footer widgets */
+.footer-widgets-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.footer-widgets-container {
+    max-width: 1200px;
+}
+
+/* Remove any default spacing from footer widgets wrapper */
+.footer-widgets-wrapper.custom-footer {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #007b5e !important;
+}
+
+/* Remove all borders and underlines from footer */
+.custom-footer * {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    border: none !important;
+}
+
+
+
+/* Ensure seamless connection */
+.footer-widgets-wrapper.custom-footer {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+/* Force remove any spacing between footer sections */
+.footer-widgets-wrapper.custom-footer + #site-footer,
+#site-footer + .footer-widgets-wrapper.custom-footer,
+.footer-widgets-wrapper.custom-footer ~ #site-footer,
+#site-footer ~ .footer-widgets-wrapper.custom-footer {
+    padding-top: 0 !important;
+}
+
+/* Override any theme default spacing */
+body .footer-widgets-wrapper,
+body #site-footer {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Force font-size for Quick Links title */
+.custom-footer h4,
+.custom-footer .footer-column h4,
+.footer-column-title,
+.custom-footer .footer-column-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    text-transform: none !important;
+}
+
+.custom-footer h4,
+.custom-footer .footer-column-title {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.custom-footer .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
+}
+
+/* Ensure no gap between footer sections */
+#site-footer.custom-footer {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Quick Links Section */
+.footer-quick-links {
+    display: flex;
+    justify-content: flex-start !important;
+    margin-bottom: 70px;
+    padding-bottom: 0;
+    gap: 100px;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 0 10px;
+    padding-left: 100px;
+}
+
+.custom-footer .footer-column-title,
+.custom-footer h4.footer-column-title,
+#site-footer .footer-column-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin-bottom: 20px !important;
+    text-align: left !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-decoration: none !important;
+    padding-left: 35px !important;
+    line-height: 1.2 !important;
+}
+
+.custom-footer .footer-column-title::before,
+.custom-footer h4.footer-column-title::before,
+#site-footer .footer-column-title::before {
+    content: '' !important;
+    width: 3px !important;
+    height: 33px !important;
+    background-color: #ffffff !important;
+    margin-right: 12px !important;
+    flex-shrink: 0 !important;
+    position: absolute !important;
+    left: 15% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+.footer-column-content {
+    position: relative;
+}
+
+.footer-line {
+    display: none;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    font-family: 'Poppins', sans-serif !important;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    display: inline-block; /* cần thiết để dịch chuyển hoạt động */
+    transition: all 0.3s ease !important; /* giúp di chuyển mượt mà */
+}
+
+.footer-links a:hover {
+    font-weight: bold;
+    transform: translateX(6px);
+}
+
+.footer-links a.bold-link {
+    font-weight: bold;
+}
+
+/* Font Awesome icon styling */
+.footer-links a .fa {
+    margin-right: 4px;
+    font-size: 16px;
+    color: #ffffff !important;
+}
+
+/* Social Media Icons */
+.footer-social {
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icon {
+    font-family: 'Poppins', sans-serif !important;
+    width: auto;
+    height: auto;
+    background-color: transparent !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    padding: 10px;
+}
+
+.social-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Font Awesome icons styling */
+.social-icon i {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+/* Copyright Section */
+.footer-copyright {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.legal-text {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.legal-text .underlined {
+    text-decoration: underline !important;
+    color: #ffffff;
+}
+
+.copyright-text {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12px;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-quick-links {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-column {
+        margin: 0;
+    }
+    
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .custom-footer .footer-container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-footer {
+        padding: 30px 0;
+    }
+    
+    .footer-column-title {
+        font-size: 16px;
+    }
+    
+    .footer-links a {
+        font-size: 13px;
+    }
+    
+    .legal-text,
+    .copyright-text {
+        font-size: 11px;
+    }
+}
