@@ -50,15 +50,7 @@ html, body {
     border: none !important;
 }
 
-/* Remove any default margins and paddings that might create gaps */
-.footer-widgets-wrapper,
-.footer-widgets-wrapper *,
-#site-footer,
-#site-footer *,
-.header-footer-group,
-.header-footer-group * {
 
-}
 
 /* Ensure seamless connection */
 .footer-widgets-wrapper.custom-footer {
