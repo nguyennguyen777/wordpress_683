@@ -20,6 +20,9 @@
 
 		<link rel="profile" href="https://gmpg.org/xfn/11">
 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
 		<?php wp_head(); ?>
 
 	</head>
@@ -56,17 +59,23 @@
 
 					<?php } ?>
 
-					<div class="header-titles">
+					<div class="header-left">
+    					<div class="site-logo">
+        					<a href="<?php echo esc_url(home_url('/')); ?>">Group C</a>
+    					</div>
 
-						<?php
-							// Site title or logo.
-							twentytwenty_site_logo();
+    					<nav class="main-nav">
+        					<ul>
+            					<li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+        					</ul>
+    					</nav>
 
-							// Site description.
-							twentytwenty_site_description();
-						?>
+    					<form class="search-form" action="<?php echo esc_url(home_url('/')); ?>" method="get">
+        					<input type="search" name="s" placeholder="Search">
+        					<button type="submit">Submit</button>
+    					</form>
+					</div>
 
-					</div><!-- .header-titles -->
 
 					<button class="toggle nav-toggle mobile-nav-toggle" data-toggle-target=".menu-modal"  data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
 						<span class="toggle-inner">
@@ -88,7 +97,7 @@
 							<nav class="primary-menu-wrapper" aria-label="<?php echo esc_attr_x( 'Horizontal', 'menu', 'twentytwenty' ); ?>">
 
 								<ul class="primary-menu reset-list-style">
-
+								
 								<?php
 								if ( has_nav_menu( 'primary' ) ) {
 
@@ -159,6 +168,15 @@
 								</button><!-- .search-toggle -->
 
 							</div>
+
+							<div class="toggle-wrapper account-toggle-wrapper">
+        						<a href="<?php echo esc_url( wp_login_url() ); ?>" class="toggle account-toggle">
+            						<span class="toggle-inner">
+                						<i class="fa-solid fa-user"></i>
+                						<span class="toggle-text">Account</span>
+            						</span>
+        						</a>
+    						</div>
 
 							<?php
 						}
