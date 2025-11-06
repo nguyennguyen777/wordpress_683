@@ -702,17 +702,18 @@ input[type="checkbox"]+label {
 }
 
 input[type="checkbox"]:checked {
-    background-color: #0073aa; /* xanh WordPress */
-    border-color: #0073aa;
+	background-color: #0073aa;
+	/* xanh WordPress */
+	border-color: #0073aa;
 }
 
 input[type="checkbox"]:checked::after {
-    content: "✓";
-    color: white;
-    position: absolute;
-    left: 3px;
-    top: -1px;
-    font-size: 1rem;
+	content: "✓";
+	color: white;
+	position: absolute;
+	left: 3px;
+	top: -1px;
+	font-size: 1rem;
 }
 
 input[type="checkbox"] {
@@ -1498,6 +1499,61 @@ body:not(.enable-search-modal) .site-logo img {
 }
 
 /* Header Navigation ------------------------- */
+/* ===== Custom Header Left ===== */
+.header-left {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.header-left .site-logo a {
+	font-size: 20px;
+	font-weight: 600;
+	color: #6a6a6a;
+	text-decoration: none;
+}
+
+.header-left .main-nav ul {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.header-left .main-nav ul li {
+	margin-right: 20px;
+}
+
+.header-left .main-nav ul li a {
+	text-decoration: none;
+	color: #555;
+	font-weight: 500;
+}
+
+.header-left .search-form {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.header-left .search-form input[type="search"] {
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.header-left .search-form button {
+	padding: 6px 12px;
+	background-color: #fff;
+	color: #000000;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	cursor: pointer;
+	text-transform: none !important;
+	font-size: 14px !important;
+	white-space: nowrap;
+}
+
 
 .header-navigation-wrapper {
 	display: none;
@@ -1658,8 +1714,7 @@ ul.primary-menu {
 	top: calc(50% - 0.4rem);
 }
 
-.primary-menu a {
-	color: inherit;
+.primary-menu a {	
 	display: block;
 	line-height: 1.2;
 	text-decoration: none;
@@ -5860,17 +5915,12 @@ a.to-the-top>* {
 
 	.header-inner .toggle {
 		height: 4.4rem;
-		padding: 0 3rem;
 		position: relative;
 		bottom: auto;
 		left: auto;
 		right: auto;
 		top: auto;
 		width: auto;
-	}
-
-	.header-inner .toggle-wrapper {
-		position: relative;
 	}
 
 	.header-inner .toggle-wrapper::before {
@@ -6272,10 +6322,6 @@ a.to-the-top>* {
 		margin-right: -4rem;
 	}
 
-	.header-toggles .toggle {
-		padding: 0 4rem;
-	}
-
 	/* Menu Modal ---------------------------- */
 
 	/* Search Modal -------------------------- */
@@ -6613,10 +6659,12 @@ a.to-the-top>* {
 
 #site-footer .footer-columns {
 	display: flex;
-	justify-content: space-evenly; /* Căn đều 3 cột */
+	justify-content: space-evenly;
+	/* Căn đều 3 cột */
 	align-items: flex-start;
 	flex-wrap: wrap;
-	gap: 40px; /* Khoảng cách giữa các cột */
+	gap: 40px;
+	/* Khoảng cách giữa các cột */
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 40px;
@@ -6657,7 +6705,8 @@ a.to-the-top>* {
 }
 
 #site-footer ul li a:hover {
-	color: #c8f7c5; /* xanh nhạt khi hover */
+	color: #c8f7c5;
+	/* xanh nhạt khi hover */
 }
 
 #site-footer hr {
@@ -6710,4 +6759,97 @@ a.to-the-top>* {
 		flex: 1 1 100%;
 		max-width: 400px;
 	}
+}
+
+.account-toggle-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.account-toggle .toggle-inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+}
+
+.account-toggle .toggle-text {
+	font-size: 16px;
+}
+
+/* --- Account icon trong header --- */
+.account-toggle i {
+	font-size: 25px;
+	/* kích thước icon */
+	color: #333;
+	/* màu icon */
+	border: 2px solid #333;
+	/* viền tròn bao quanh */
+	border-radius: 50%;
+	/* bo tròn thành hình tròn */
+	padding: 6px;
+	/* khoảng cách giữa icon và viền */
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	/* kích thước tổng thể của vòng tròn */
+	height: 32px;
+	transition: all 0.3s ease;
+}
+
+.header-toggles .account-toggle,
+.header-toggles .account-toggle:hover,
+.header-toggles .account-toggle:focus {
+	text-decoration: none;
+}
+
+.header-toggles .account-toggle .toggle-inner {
+	justify-content: center;
+	padding-top: 15px;
+}
+
+.header-toggles .account-toggle .toggle-text {
+	position: static;
+	top: auto;
+	white-space: normal;
+}
+
+.header-toggles .account-toggle .toggle-text::after {
+	content: "\25BE";
+	display: inline-block;
+	margin-left: 6px;
+	font-size: 1em;
+	vertical-align: middle;
+	color: currentColor;
+}
+
+.primary-menu li.menu-the-thao>a {
+	color: #6a6a6a !important;
+}
+
+.primary-menu li.menu-mon-an>a {
+	color: #6a6a6a !important;
+}
+
+.primary-menu li.menu-du-lich>a {
+	color: #6a6a6a !important;
+}
+
+.toggle-wrapper.search-toggle-wrapper {
+	margin-left: 35px;
+}
+
+.header-left .main-nav ul {
+	display: flex;
+	align-items: center;
+	height: 100px;
+	/* bằng với navbar */
+	background-color: #bdbdbd;
+}
+
+.header-footer-group {
+	display: flex;
+	align-items: center;
+	height: 100px;
 }
