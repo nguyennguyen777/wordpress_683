@@ -19,37 +19,46 @@
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<?php
+    <?php if ( is_singular() ) : ?>
 
-	get_template_part( 'template-parts/entry-header' );
+    <?php
+    get_template_part( 'template-parts/entry-header' );
 
-	if ( ! is_search() ) {
-		get_template_part( 'template-parts/featured-image' );
-	}
+    if ( ! is_search() ) {
+        get_template_part( 'template-parts/featured-image' );
+    }
+    ?>
 
-	?>
+    <div class="post-inner <?php echo is_page_template( 'templates/template-full-width.php' ) ? '' : 'thin'; ?> ">
 
-	<div class="post-inner <?php echo is_page_template( 'templates/template-full-width.php' ) ? '' : 'thin'; ?> ">
+        <div class="entry-content">
 
-		<div class="entry-content">
+            <?php
+            if ( is_search() || ! is_singular() && 'summary' === get_theme_mod( 'blog_content', 'full' ) ) {
+                the_excerpt();
+            } else {
+                the_content( __( 'Continue reading', 'twentytwenty' ) );
+            }
+            ?>
 
-			<?php
-			if ( is_search() || ! is_singular() && 'summary' === get_theme_mod( 'blog_content', 'full' ) ) {
-				the_excerpt();
-			} else {
-				the_content( __( 'Continue reading', 'twentytwenty' ) );
-				// if (is_single()) {
-				// 	the_content( __( 'Continue reading', 'twentytwenty' ) );
-				// } else {
-				// 	$post = get_post();
-				// 	echo substr($post->post_content, 0, 100);
-				// }
-			}
-			?>
+        </div><!-- .entry-content -->
 
-		</div><!-- .entry-content -->
+    </div><!-- .post-inner -->
 
-	</div><!-- .post-inner -->
+    <?php else : ?>
+
+    <div class="post-list-row">
+        <div class="post-date-badge">
+            <div class="post-date-day"><?php echo get_the_date( 'd' ); ?></div>
+            <div class="post-date-month">THÁNG <?php echo get_the_date( 'm' ); ?></div>
+        </div>
+        <div class="post-list-content">
+            <h2 class="entry-title heading-size-1"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h2>
+            <div class="entry-excerpt"><?php echo wp_kses_post( wpautop( get_the_excerpt() ) ); ?></div>
+        </div>
+    </div>
+
+    <?php endif; ?>
 
 	<div class="section-inner">
 		<?php
@@ -62,7 +71,7 @@
 			)
 		);
 
-		edit_post_link();
+		/* removed edit post link under each post list item */
 
 		// Single bottom post meta.
 		twentytwenty_the_post_meta( get_the_ID(), 'single-bottom' );
