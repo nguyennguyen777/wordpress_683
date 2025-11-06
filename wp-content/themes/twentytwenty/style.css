@@ -1292,7 +1292,8 @@ button.toggle {
 	align-items: stretch;
 	display: flex;
 	flex-wrap: nowrap;
-	margin: 0 0 -0.8rem -0.8rem;
+	margin: -1rem -1rem -0.8rem -0.8rem;
+	padding-left: 10px;
 }
 
 .search-form .search-field,
@@ -1383,7 +1384,7 @@ ul.social-icons li {
 
 
 #site-header {
-	background: #fff;
+	background: #f8f8f8;
 	position: relative;
 }
 
@@ -6312,6 +6313,7 @@ a.to-the-top>* {
 
 	.primary-menu-wrapper+.header-toggles {
 		margin-left: 4rem;
+		margin-bottom: 2rem;
 	}
 
 	.header-toggles {
