@@ -314,7 +314,7 @@ h6,
 h1,
 .heading-size-1 {
 	font-size: 3.6rem;
-	font-weight: 800;
+	font-weight: 500;
 	line-height: 1.138888889;
 }
 
@@ -2471,7 +2471,7 @@ body.template-full-width [class*="wp-block"].alignfull:not(.has-background) [cla
 /* Posts ------------------------------------- */
 
 body:not(.singular) main>article:first-of-type {
-	padding: 4rem 0 0;
+	padding: 4rem 30rem 0;
 }
 
 
@@ -4991,7 +4991,7 @@ a.to-the-top>* {
 
 	h2,
 	.heading-size-2 {
-		font-size: 4.8rem;
+		font-size: 2.8rem;
 	}
 
 	h3,
@@ -5234,12 +5234,8 @@ a.to-the-top>* {
 		font-size: 3.2rem;
 	}
 
-	body:not(.singular) main>article:first-of-type {
-		padding: 8rem 0 0;
-	}
-
 	h2.entry-title {
-		font-size: 6.4rem;
+		font-size: 4.4rem;
 	}
 
 	/* SEARCH RESULTS */
@@ -6852,4 +6848,57 @@ a.to-the-top>* {
 	display: flex;
 	align-items: center;
 	height: 100px;
+}
+
+/* -------- Post list layout (archive/home) -------- */
+.post-list-row {
+	display: flex;
+	align-items: stretch;
+	gap: 22px;
+	background: #ffffff; /* card nền trắng mỗi post */
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	padding: 18px 20px;
+	margin: 10px 0; /* tách biệt giữa các bài (đã giảm) */
+	box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.post-date-badge {
+	min-width: 88px;
+	text-align: center;
+	padding: 4px 10px 4px 0;
+	border-right: 4px solid #cfcfcf; /* vạch đứng dày hơn */
+}
+
+.post-date-day {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 700;
+	font-size: 44px;
+	line-height: 1;
+	color: #1e1e1e;
+}
+
+.post-date-month {
+	margin-top: 6px;
+	font-size: 11px;
+	letter-spacing: .5px;
+	color: #6b6b6b;
+}
+
+.post-list-content { flex: 1; }
+.post-list-content .entry-title a { color: #0a6ebd; text-decoration: none; }
+.post-list-content .entry-title a:hover { text-decoration: underline; }
+.post-list-content .entry-excerpt { margin-top: 8px; color: #2b2b2b; }
+
+/* Ẩn hr mặc định giữa các bài vì đã dùng card riêng */
+.post-separator.styled-separator { display: none; }
+
+@media (max-width: 768px) {
+	.post-date-badge { min-width: 72px; }
+	.post-date-day { font-size: 36px; }
+}
+
+/* Padding for posts from the 2nd onward (mirror of :first-of-type rule) */
+body:not(.singular) main>article:not(:first-of-type) {
+	padding: 0 30rem 0;
 }

@@ -423,6 +423,18 @@ function twentytwenty_sidebar_registration() {
 			)
 		)
 	);
+
+	// Footer #3.
+	register_sidebar(
+		array_merge(
+			$shared_args,
+			array(
+				'name'        => __( 'Footer #3', 'twentytwenty' ),
+				'id'          => 'sidebar-3',
+				'description' => __( 'Widgets in this area will be displayed in the third column in the footer.', 'twentytwenty' ),
+			)
+		)
+	);
 }
 
 add_action( 'widgets_init', 'twentytwenty_sidebar_registration' );
@@ -627,6 +639,14 @@ function twentytwenty_block_editor_settings() {
 }
 
 add_action( 'after_setup_theme', 'twentytwenty_block_editor_settings' );
+
+/**
+ * Force excerpts to end with [...] across the site.
+ */
+function twentytwenty_custom_excerpt_more( $more ) {
+    return ' [...]';
+}
+add_filter( 'excerpt_more', 'twentytwenty_custom_excerpt_more' );
 
 /**
  * Overwrite default more tag with styling and screen reader markup.
