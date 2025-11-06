@@ -13,47 +13,25 @@
 
 ?>
 
-<footer id="site-footer" class="header-footer-group custom-footer">
+<!-- Footer -->
+<footer id="site-footer" class="footer custom-footer">
+	<div class="footer-container">
+		<div class="footer-social">
+			<div class="social-icons">
+				<a href="https://www.facebook.com/" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="https://twitter.com/" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="https://www.instagram.com/" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="https://www.google.com/" class="social-icon" aria-label="Google"><i class="fab fa-google"></i></a>
+				<a href="mailto:info@example.com" class="social-icon" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+			</div>
+		</div>
 
-    <div class="footer-container">
-
-        <!-- ======================
-             Social Media Icons
-        ======================= -->
-        <div class="footer-social">
-            <div class="social-icons">
-                <a href="#" class="social-icon facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-icon twitter">
-                    <i class="fa-brands fa-twitter"></i>
-                </a>
-                <a href="#" class="social-icon instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#" class="social-icon google-plus">
-                    <i class="fa-brands fa-google-plus-g"></i>
-                </a>
-                <a href="#" class="social-icon email">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
-            </div>
-        </div><!-- .footer-social -->
-
-        <!-- ======================
-             Copyright & Legal
-        ======================= -->
-        <div class="footer-copyright">
-            <p class="legal-text">
-                <a href="#" class="underlined">National Transaction Corporation</a> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]
-            </p>
-            <p class="copyright-text">
-                © All right Reversed. Sunlimetech
-            </p>
-        </div><!-- .footer-copyright -->
-
-    </div><!-- .footer-container -->
-
-</footer><!-- #site-footer -->
+		<div class="footer-copyright">
+			<p class="legal-text"><u class="underlined"><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
+			<p class="copyright-text"><strong>© All right Reversed.</strong> <a href="https://www.sunlimetech.com" target="_blank"><strong>Sunlimetech</strong></a></p>
+		</div>
+	</div>
+</footer>
+<!-- ./Footer -->
 
 <?php wp_footer(); ?>

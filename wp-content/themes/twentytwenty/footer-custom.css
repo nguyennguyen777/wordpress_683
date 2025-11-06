@@ -36,6 +36,9 @@ html, body {
     max-width: 1200px;
 }
 
+.no-margin {
+    margin: 0 !important;
+}
 /* Remove any default spacing from footer widgets wrapper */
 .footer-widgets-wrapper.custom-footer {
     margin: 0 !important;
@@ -96,7 +99,12 @@ body #site-footer {
 .custom-footer .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 180px;
 }
 
 /* Ensure no gap between footer sections */
@@ -109,9 +117,6 @@ body #site-footer {
 .footer-quick-links {
     display: flex;
     justify-content: flex-start !important;
-    margin-bottom: 70px;
-    padding-bottom: 0;
-    gap: 100px;
 }
 
 .footer-column {
@@ -190,6 +195,69 @@ body #site-footer {
     font-weight: bold;
 }
 
+/* Style WordPress widget output to look like our Quick Links */
+.footer-widgets-wrapper.custom-footer .widget-title,
+.footer-widgets-wrapper.custom-footer h2.widget-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin-bottom: 20px !important;
+    text-align: left !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-decoration: none !important;
+    padding-left: 35px !important;
+    line-height: 1.2 !important;
+}
+
+.footer-widgets-wrapper.custom-footer .widget-title::before,
+.footer-widgets-wrapper.custom-footer h2.widget-title::before {
+    content: '' !important;
+    width: 3px !important;
+    height: 33px !important;
+    background-color: #ffffff !important;
+    margin-right: 12px !important;
+    flex-shrink: 0 !important;
+    position: absolute !important;
+    left: 15% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+.footer-widgets-wrapper.custom-footer .widget ul,
+.footer-widgets-wrapper.custom-footer .widget ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-widgets-wrapper.custom-footer .widget li {
+    margin-bottom: 8px;
+}
+
+.footer-widgets-wrapper.custom-footer .widget a {
+    font-family: 'Poppins', sans-serif !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 16px;
+    font-weight: 400;
+    display: inline-block;
+    transition: all 0.3s ease !important;
+}
+
+.footer-widgets-wrapper.custom-footer .widget a:hover {
+    font-weight: 600;
+    transform: translateX(6px);
+}
+
+.footer-widgets-wrapper.custom-footer .widget ul li a:before {
+    content: '\00BB'; /* » */
+    margin-right: 8px;
+}
+
 /* Font Awesome icon styling */
 .footer-links a .fa {
     margin-right: 4px;
@@ -200,7 +268,6 @@ body #site-footer {
 /* Social Media Icons */
 .footer-social {
     text-align: center;
-    margin-top: 0;
     padding-top: 0;
 }
 
@@ -245,7 +312,7 @@ body #site-footer {
 /* Copyright Section */
 .footer-copyright {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 10px; /* nhẹ nhàng, không quá rộng */
 }
 
 .legal-text {
