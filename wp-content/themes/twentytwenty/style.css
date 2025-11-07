@@ -7669,7 +7669,58 @@ body:not(.singular) main>article:not(:first-of-type) {
   background: #fff;
   padding: 20px;
   border: 1px solid #e0e0e0;
-  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comments-sidebar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 20px 0;
+  padding-bottom: 10px;
+  text-transform: none;
+  position: relative;
+  display: inline-block;
+  border-bottom: none;
+}
+
+.comments-sidebar-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.comments-sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comments-sidebar-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comments-sidebar-item:last-child {
+  border-bottom: none;
+}
+
+.comments-sidebar-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.5;
+  display: block;
+}
+
+.comments-sidebar-link:hover {
+  text-decoration: underline;
+  color: #0052a3;
 }
 
 /* ======= RESPONSIVE ======= */

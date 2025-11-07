@@ -157,10 +157,38 @@ get_header();
 				?>
 			</div>
 			
-			<!-- Cột phải: Danh sách comment (sẽ làm sau) -->
+			<!-- Cột phải: Danh sách comment -->
 			<aside class="archive-sidebar-right">
 				<div class="comments-sidebar-box">
-					<!-- Placeholder cho phần comment, sẽ được thêm sau -->
+					<h2 class="comments-sidebar-title">Comments</h2>
+					<ul class="comments-sidebar-list">
+						<?php
+						// Lấy 3 comments mới nhất
+						$recent_comments = get_comments(array(
+							'number' => 3,
+							'status' => 'approve',
+							'post_status' => 'publish',
+							'orderby' => 'comment_date',
+							'order' => 'DESC'
+						));
+						
+						if ( ! empty( $recent_comments ) ) {
+							foreach ( $recent_comments as $comment ) {
+								$comment_text = wp_trim_words( $comment->comment_content, 10, '...' );
+								$comment_link = get_comment_link( $comment );
+								?>
+								<li class="comments-sidebar-item">
+									<a href="<?php echo esc_url( $comment_link ); ?>" class="comments-sidebar-link">
+										<?php echo esc_html( $comment_text ); ?>
+									</a>
+								</li>
+								<?php
+							}
+						} else {
+							echo '<li class="comments-sidebar-item">Chưa có bình luận nào.</li>';
+						}
+						?>
+					</ul>
 				</div>
 			</aside>
 		</div>
