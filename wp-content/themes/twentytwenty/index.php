@@ -86,19 +86,86 @@ get_header();
 	}
 
 	if ( have_posts() ) {
+		?>
+		
+		<div class="archive-layout-wrapper">
+			<!-- Cột trái: Xem nhiều -->
+			<aside class="archive-sidebar-left">
+				<div class="most-viewed-box">
+					<h2 class="most-viewed-title">Xem nhiều</h2>
+					<div class="most-viewed-content">
+						<?php
+						// Lấy 8 bài viết mới nhất (theo ngày tháng)
+						$most_viewed = new WP_Query(array(
+							'posts_per_page' => 8,
+							'post_status' => 'publish',
+							'orderby' => 'date', // Sắp xếp theo ngày đăng (bài viết mới nhất)
+							'order' => 'DESC'
+						));
+						
+						if ( $most_viewed->have_posts() ) {
+							$post_count = 0;
+							echo '<div class="most-viewed-columns">';
+							echo '<div class="most-viewed-col-left">';
+							
+							while ( $most_viewed->have_posts() ) {
+								$most_viewed->the_post();
+								$post_count++;
+								
+								if ( $post_count == 5 ) {
+									echo '</div><div class="most-viewed-divider"></div><div class="most-viewed-col-right">';
+								}
+								?>
+								<div class="most-viewed-item">
+									<span class="most-viewed-number"><?php echo $post_count; ?></span>
+									<a href="<?php echo esc_url( get_permalink() ); ?>" class="most-viewed-link">
+										<?php the_title(); ?>
+									</a>
+									<?php if ( get_comments_number() > 0 ) : ?>
+										<span class="most-viewed-comments">
+											<span class="comment-icon">💬</span>
+											<?php echo get_comments_number(); ?>
+										</span>
+									<?php endif; ?>
+								</div>
+								<?php
+							}
+							
+							echo '</div></div>';
+							wp_reset_postdata();
+						}
+						?>
+					</div>
+				</div>
+			</aside>
+			
+			<!-- Cột giữa: Danh sách bài viết -->
+			<div class="archive-posts-content">
+				<?php
+				$i = 0;
 
-		$i = 0;
+				while ( have_posts() ) {
+					++$i;
+					if ( $i > 1 ) {
+						echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
+					}
+					the_post();
 
-		while ( have_posts() ) {
-			++$i;
-			if ( $i > 1 ) {
-				echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
-			}
-			the_post();
+					get_template_part( 'template-parts/content', get_post_type() );
 
-			get_template_part( 'template-parts/content', get_post_type() );
-
-		}
+				}
+				?>
+			</div>
+			
+			<!-- Cột phải: Danh sách comment (sẽ làm sau) -->
+			<aside class="archive-sidebar-right">
+				<div class="comments-sidebar-box">
+					<!-- Placeholder cho phần comment, sẽ được thêm sau -->
+				</div>
+			</aside>
+		</div>
+		
+		<?php
 	} elseif ( is_search() ) {
 		?>
 
