@@ -49,8 +49,8 @@ get_header();
             </footer>
 
             
-
-            <?php get_template_part( 'template-parts/navigation/navigation', 'single' ); ?>
+            <!-- Prev/Next Post Navigation -->
+            <?php get_template_part( 'template-parts/navigation', 'single' ); ?>
 
 
 			<!-- ✅ Phần bình luận -->
