@@ -6500,6 +6500,7 @@ a.to-the-top>* {
 		font-size: 5.6rem;
 		line-height: 1.2;
 		margin-bottom: 6rem;
+		margin-top: 6rem;
 	}
 
 	.comment-respond p.comment-notes,
@@ -7000,7 +7001,7 @@ body:not(.singular) main>article:not(:first-of-type) {
 
 .single-post-page {
     background-color: #fff;
-    padding: 10px 0;
+    /* padding: 10px 0; */
 }
 
 .entry-header .entry-title {
@@ -7165,7 +7166,7 @@ body:not(.singular) main>article:not(:first-of-type) {
     font-weight: 600;
     color: #2f3e46;
     display: block;
-	padding-top: 6px;
+	padding-top: 6px !important;
 }
 
 /* Năm nhỏ ở góc trên bên phải */
@@ -7198,55 +7199,141 @@ body:not(.singular) main>article:not(:first-of-type) {
     margin-bottom: 25px;  /* cách nội dung bên dưới */
 }
 
-/* === Simple Prev/Next Navigation === */
-.simple-prev-next {
+.pagination-simple-column {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 28px;
   margin-top: 40px;
 }
 
-.simple-nav-item {
+.nav-item {
   display: flex;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center !important;
+  gap: 24px;
   text-decoration: none;
   color: #222;
   transition: color 0.3s ease;
 }
 
-.simple-nav-item:hover .title {
+.nav-item:hover .nav-title {
   color: #0073aa;
 }
 
-.date-block {
-  font-family: "Georgia", serif;
+.nav-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  line-height: 1;
-  color: #333;
-  width: 40px;
+  line-height: 1.2;
+  padding-right: 15px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.date-block .day {
-  font-size: 16px;
+.date-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-inner .day {
+  font-size: 18px;
   font-weight: 600;
+  margin-bottom: 4px;
 }
 
-.date-block .month {
-  font-size: 14px;
-  border-bottom: 1px solid #aaa;
-  display: inline-block;
-  padding-bottom: 3px;
-  margin-bottom: 3px;
+.date-inner .divider {
+  width: 16px;
+  height: 1px;
+  background-color: #333;
+  margin: 2px 0;
+  display: block;
 }
 
-.date-block .year {
-  font-size: 13px;
-  color: #888;
+.nav-date .date-inner .month {
+  font-size: 17px;
+  padding-top: 0 !important;
 }
 
-.simple-nav-item .title {
+.nav-date .year {
+  font-size: 17px;
+  margin-top: -30px;
+  padding-left: 25px;
+}
+
+.nav-title {
   font-size: 16px;
   line-height: 1.5;
   flex: 1;
+}
+
+/********************************* module-8-comments*/
+/* ==== Custom Comment Form ==== */
+.comment-respond {
+	background-color: #d6e6e1; /* nền xanh nhạt */
+	padding: 40px;
+	border-radius: 6px;
+	margin-top: 40px;
+}
+
+.comment-reply-title {
+	font-size: 28px;
+	font-weight: 500;
+	margin-bottom: 15px;
+	color: #133b36;
+	padding-right: 360px;
+}
+
+.logged-in-as {
+	font-size: 14px !important;
+	text-align: left !important;
+    margin-top: 0px !important;
+	margin-bottom: 20px !important;
+}
+
+/* Màu link "Edit your profile" và "Log out" */
+.logged-in-as a {
+	color: #6d6d6d !important;
+}
+
+/* Màu link khi hover */
+.logged-in-as a:hover {
+  color: #005077 !important;
+  text-decoration: underline;
+}
+
+.comment-form-comment label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 6px;
+	font-size: 14px;
+}
+
+.comment-form-comment textarea {
+	width: 100%;
+	border: 2px solid #333;
+	border-radius: 2px;
+	min-height: 120px;
+	padding: 10px;
+	font-size: 15px;
+	font-family: inherit;
+	resize: vertical;
+}
+
+.comment-form {
+  	max-width: 600px;
+}
+
+.form-submit input[type="submit"] {
+	background-color: #111;
+	color: #fff;
+	border: none;
+	padding: 10px 22px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	text-transform: none !important;
+}
+
+.form-submit input[type="submit"]:hover {
+  	background-color: #0073aa;
 }
