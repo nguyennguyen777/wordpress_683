@@ -49,7 +49,7 @@ get_header();
             </footer>
 
             
-
+            <!-- Prev/Next Navigation -->
             <?php get_template_part( 'template-parts/navigation/navigation', 'single' ); ?>
 
 
