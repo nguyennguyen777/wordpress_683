@@ -12,20 +12,49 @@
 get_header();
 ?>
 
-<main id="site-content">
+<main id="site-content" class="single-post-page">
 
-	<?php
+    <?php
+    if ( have_posts() ) {
+        while ( have_posts() ) {
+            the_post();
+            ?>
 
-	if ( have_posts() ) {
+            <!-- Title and Date Wrapper -->
+            <header class="entry-header">
+                <!-- Title -->
+                <h1 class="entry-title"><?php the_title(); ?></h1>
 
-		while ( have_posts() ) {
-			the_post();
+                <!-- Date -->
+				<div class="post-date">
+					<div class="date-circle">
+						<div class="date-inner">
+							<span class="day"><?php echo get_the_date('d'); ?></span>
+							<span class="divider" aria-hidden="true"></span>
+							<span class="month"><?php echo get_the_date('m'); ?></span>
+						</div>
+						<span class="year"><?php echo get_the_date('y'); ?></span>
+					</div>
+				</div>
 
-			get_template_part( 'template-parts/content', get_post_type() );
-		}
-	}
+            </header><!-- .entry-header -->
 
-	?>
+            <!-- Content -->
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <div class="entry-content">
+                    <?php the_content(); ?>
+                </div><!-- .entry-content -->
+            </article><!-- .post -->
+
+            <!-- Author or Source -->
+            <footer class="entry-footer">
+                <p class="post-author"><?php echo '(Theo ' . get_the_author() . ')'; ?></p>
+            </footer><!-- .entry-footer -->
+
+            <?php
+        }
+    }
+    ?>
 
 </main><!-- #site-content -->
 
