@@ -20,7 +20,7 @@ get_header();
             the_post();
             ?>
 
-            <!-- Title and Date Wrapper -->
+            <!-- ✅ Giữ nguyên phần tiêu đề và ngày đăng -->
             <header class="entry-header">
                 <h1 class="entry-title"><?php the_title(); ?></h1>
 
@@ -34,26 +34,62 @@ get_header();
                         <span class="year"><?php echo get_the_date('y'); ?></span>
                     </div>
                 </div>
-            </header><!-- .entry-header -->
+            </header>
 
-            <!-- Content -->
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <div class="entry-content">
-                    <?php the_content(); ?>
-                </div><!-- .entry-content -->
-            </article><!-- .post -->
+            <!-- ✅ CHỈ PHẦN NỘI DUNG BÀI VIẾT DƯỚI DẠNG 3 CỘT -->
+            <div class="post-layout-3col">
+                
+                <!-- Cột trái: Categories -->
+                <aside class="post-sidebar-left">
+                    <div class="category-box">
+                        <h3 class="category-title">Categories</h3>
+                        <ul class="category-list">
+                            <?php
+                            $categories = get_the_category();
+                            if ( ! empty( $categories ) ) {
+                                foreach ( $categories as $category ) {
+                                    echo '<li><a href="' . esc_url( get_category_link( $category->term_id ) ) . '">' . esc_html( $category->name ) . '</a></li>';
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </aside>
 
-            <!-- Author -->
-            <footer class="entry-footer">
-                <p class="post-author"><?php echo '(Theo ' . get_the_author() . ')'; ?></p>
-            </footer>
+                <!-- Cột giữa: Nội dung chính -->
+                <div class="post-content-area">
+                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div><!-- .entry-content -->
+                    </article><!-- .post -->
 
-            
-            <!-- Prev/Next Post Navigation -->
+                    <footer class="entry-footer">
+                        <p class="post-author"><?php echo '(Theo ' . get_the_author() . ')'; ?></p>
+                    </footer>
+                </div>
+
+                <!-- Cột phải: Sidebar -->
+                <aside class="post-sidebar-right">
+                    <div class="widget-box">
+                        <h3 class="widget-title">Bài viết mới</h3>
+                        <ul class="widget-list">
+                            <?php
+                            $recent_posts = wp_get_recent_posts( array( 'numberposts' => 5 ) );
+                            foreach( $recent_posts as $post_item ) {
+                                echo '<li><a href="' . get_permalink($post_item['ID']) . '">' . esc_html($post_item['post_title']) . '</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </aside>
+
+            </div>
+            <!-- ✅ HẾT PHẦN 3 CỘT -->
+
+            <!-- ✅ Giữ nguyên phần Prev/Next & Bình luận -->
             <?php get_template_part( 'template-parts/navigation', 'single' ); ?>
 
-
-			<!-- ✅ Phần bình luận -->
             <?php
             if ( comments_open() || get_comments_number() ) {
                 comments_template();
@@ -65,6 +101,7 @@ get_header();
     ?>
 
 </main><!-- #site-content -->
+
 
 <?php get_template_part( 'template-parts/footer-menus-widgets' ); ?>
 

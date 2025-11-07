@@ -7337,3 +7337,132 @@ body:not(.singular) main>article:not(:first-of-type) {
 .form-submit input[type="submit"]:hover {
   	background-color: #0073aa;
 }
+
+/********************************module-9-categories*/
+/* ======= BỐ CỤC 3 CỘT ======= */
+.post-layout-3col {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 40px;
+  align-items: flex-start;
+  margin: 40px 0;
+}
+
+/* ======= ĐƯỜNG GẠCH PHÂN CÁCH ======= */
+.section-divider {
+  border: none;
+  border-top: 2px solid #eee;
+  margin: 40px 0;
+}
+
+/* ======= CỘT TRÁI (CATEGORIES) ======= */
+.post-sidebar-left .category-box {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 15px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.category-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 5px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list li {
+  position: relative;
+  padding: 6px 0 6px 20px; /* tạo khoảng trống bên trái cho chấm vàng */
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.category-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  background-color: #ffcc00; /* 🎯 màu vàng */
+  border-radius: 50%;
+}
+
+.category-list a {
+  color: #0073aa;
+  text-decoration: none;
+}
+
+.category-list a:hover {
+  text-decoration: underline;
+}
+
+/* ======= CỘT PHẢI (BÀI VIẾT MỚI) ======= */
+.post-sidebar-right .widget-box {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 15px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.widget-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 5px;
+}
+
+.widget-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget-list li {
+  position: relative;
+  padding: 6px 0 6px 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.widget-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  background-color: #ffcc00; /* 🎯 màu vàng */
+  border-radius: 50%;
+}
+
+.widget-list a {
+  color: #0073aa;
+  text-decoration: none;
+}
+
+.widget-list a:hover {
+  text-decoration: underline;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 992px) {
+  .post-layout-3col {
+    grid-template-columns: 1fr;
+  }
+  .post-sidebar-left,
+  .post-sidebar-right {
+    order: 2;
+  }
+  .post-content-area {
+    order: 1;
+  }
+}
