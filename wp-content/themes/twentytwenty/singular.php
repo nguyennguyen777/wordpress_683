@@ -20,7 +20,7 @@ get_header();
             the_post();
             ?>
 
-            <!-- Title and Date Wrapper -->
+            <!-- ✅ Giữ nguyên phần tiêu đề và ngày đăng -->
             <header class="entry-header">
                 <h1 class="entry-title"><?php the_title(); ?></h1>
 
@@ -34,26 +34,84 @@ get_header();
                         <span class="year"><?php echo get_the_date('y'); ?></span>
                     </div>
                 </div>
-            </header><!-- .entry-header -->
+            </header>
 
-            <!-- Content -->
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <div class="entry-content">
-                    <?php the_content(); ?>
-                </div><!-- .entry-content -->
-            </article><!-- .post -->
+            <!-- ✅ CHỈ PHẦN NỘI DUNG BÀI VIẾT DƯỚI DẠNG 3 CỘT -->
+            <div class="post-layout-3col">
+                
+                <!-- Cột trái: Categories -->
+                <aside class="post-sidebar-left">
+                    <div class="category-box">
+                        <h3 class="category-title">Categories</h3>
+                        <ul class="category-list">
+                            <?php
+                            $categories = get_the_category();
+                            if ( ! empty( $categories ) ) {
+                                foreach ( $categories as $category ) {
+                                    echo '<li><a href="' . esc_url( get_category_link( $category->term_id ) ) . '">' . esc_html( $category->name ) . '</a></li>';
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </aside>
 
-            <!-- Author -->
-            <footer class="entry-footer">
-                <p class="post-author"><?php echo '(Theo ' . get_the_author() . ')'; ?></p>
-            </footer>
+                <!-- Cột giữa: Nội dung chính -->
+                <div class="post-content-area">
+                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div><!-- .entry-content -->
+                    </article><!-- .post -->
 
-            
+                    <footer class="entry-footer">
+                        <p class="post-author"><?php echo '(Theo ' . get_the_author() . ')'; ?></p>
+                    </footer>
+                </div>
 
-            <?php get_template_part( 'template-parts/navigation/navigation', 'single' ); ?>
+                <!-- ✅ CỘT PHẢI (TIN TỨC MỚI NHẤT) -->
+                <aside class="post-sidebar-right">
+                <div class="widget-box news-box">
+                    <ul class="widget-list">
+                        <?php
+                        $recent_posts = wp_get_recent_posts(array(
+                            'numberposts' => 3, // hiển thị 3 bài
+                            'post_status' => 'publish',
+                            'exclude' => get_the_ID() // Loại trừ bài viết hiện tại
+                        ));
+                        foreach( $recent_posts as $post ) :
+                        ?>
+                            <li>
+                                <div class="news-date">
+                                    <div class="date-inner">
+                                        <span class="day"><?php echo get_the_date('d', $post['ID']); ?></span>
+                                        <span class="divider" aria-hidden="true"></span>
+                                        <span class="month"><?php echo get_the_date('m', $post['ID']); ?></span>
+                                    </div>
+                                    <span class="year"><?php echo get_the_date('y', $post['ID']); ?></span>
+                                </div>
+                                <div class="news-title">
+                                    <a href="<?php echo get_permalink($post['ID']); ?>">
+                                        <?php echo esc_html($post['post_title']); ?>
+                                    </a>
+                                </div>
+                            </li>
+                        <?php endforeach; wp_reset_query(); ?>
+                    </ul>
+
+                    <div class="news-more">
+                        <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">XEM TẤT CẢ TIN TỨC</a>
+                    </div>
+                </div>
+                </aside>
 
 
-			<!-- ✅ Phần bình luận -->
+            </div>
+            <!-- ✅ HẾT PHẦN 3 CỘT -->
+
+            <!-- ✅ Giữ nguyên phần Prev/Next & Bình luận -->
+            <?php get_template_part( 'template-parts/navigation', 'single' ); ?>
+
             <?php
             if ( comments_open() || get_comments_number() ) {
                 comments_template();
@@ -65,6 +123,7 @@ get_header();
     ?>
 
 </main><!-- #site-content -->
+
 
 <?php get_template_part( 'template-parts/footer-menus-widgets' ); ?>
 

@@ -105,14 +105,22 @@ if ( comments_open() || pings_open() ) {
 	if ( $comments ) {
 		echo '<hr class="styled-separator is-style-wide" aria-hidden="true" />';
 	}
-
+	/* module-8-comments */
 	comment_form(
 		array(
-			'class_form'         => 'section-inner thin max-percentage',
+			'class_form'         => 'comment-form section-inner thin max-percentage',
+			'title_reply'        => __('Leave a comment', 'twentytwenty'),
 			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
 			'title_reply_after'  => '</h2>',
+			'label_submit'       => __('Post Comment', 'twentytwenty'),
+			'comment_field'      =>
+				'<p class="comment-form-comment">
+					<label for="comment">' . __( 'Comment *', 'twentytwenty' ) . '</label>
+					<textarea id="comment" name="comment" cols="45" rows="6" aria-required="true"></textarea>
+				</p>',
 		)
 	);
+
 
 } elseif ( is_single() ) {
 

@@ -42,8 +42,12 @@
             ?>
 
         </div><!-- .entry-content -->
-
     </div><!-- .post-inner -->
+
+	<!--Prev/Next Post-->
+	<div class="post-navigation-wrapper">
+		<?php get_template_part( 'template-parts/navigation' ); ?>
+	</div>
 
     <?php else : ?>
 
