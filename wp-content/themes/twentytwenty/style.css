@@ -7001,7 +7001,7 @@ body:not(.singular) main>article:not(:first-of-type) {
 
 .single-post-page {
     background-color: #fff;
-    padding: 10px 0;
+    /* padding: 10px 0; */
 }
 
 .entry-header .entry-title {
@@ -7264,4 +7264,76 @@ body:not(.singular) main>article:not(:first-of-type) {
   font-size: 16px;
   line-height: 1.5;
   flex: 1;
+}
+
+/********************************* module-8-comments*/
+/* ==== Custom Comment Form ==== */
+.comment-respond {
+	background-color: #d6e6e1; /* nền xanh nhạt */
+	padding: 40px;
+	border-radius: 6px;
+	margin-top: 40px;
+}
+
+.comment-reply-title {
+	font-size: 28px;
+	font-weight: 500;
+	margin-bottom: 15px;
+	color: #133b36;
+	padding-right: 360px;
+}
+
+.logged-in-as {
+	font-size: 14px !important;
+	text-align: left !important;
+    margin-top: 0px !important;
+	margin-bottom: 20px !important;
+}
+
+/* Màu link "Edit your profile" và "Log out" */
+.logged-in-as a {
+	color: #6d6d6d !important;
+}
+
+/* Màu link khi hover */
+.logged-in-as a:hover {
+  color: #005077 !important;
+  text-decoration: underline;
+}
+
+.comment-form-comment label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 6px;
+	font-size: 14px;
+}
+
+.comment-form-comment textarea {
+	width: 100%;
+	border: 2px solid #333;
+	border-radius: 2px;
+	min-height: 120px;
+	padding: 10px;
+	font-size: 15px;
+	font-family: inherit;
+	resize: vertical;
+}
+
+.comment-form {
+  	max-width: 600px;
+}
+
+.form-submit input[type="submit"] {
+	background-color: #111;
+	color: #fff;
+	border: none;
+	padding: 10px 22px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	text-transform: none !important;
+}
+
+.form-submit input[type="submit"]:hover {
+  	background-color: #0073aa;
 }
