@@ -5344,10 +5344,6 @@ a.to-the-top>* {
 
 	/* POST HEADER */
 
-	.singular .entry-header {
-		padding: 8rem 0;
-	}
-
 	.entry-categories {
 		margin-bottom: 3rem;
 	}
@@ -6998,4 +6994,206 @@ a.to-the-top>* {
 /* Padding for posts from the 2nd onward (mirror of :first-of-type rule) */
 body:not(.singular) main>article:not(:first-of-type) {
 	padding: 0 30rem 0;
+}
+
+/* Title styling */
+
+.single-post-page {
+    background-color: #fff;
+    padding: 10px 0;
+}
+
+.entry-header .entry-title {
+    font-size: 2.5em; /* Adjust as per your design */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Date styling in a circular format */
+/* .post-date {
+    background-color: #f8d347;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+	flex-shrink: 0;
+} */
+.post-date {
+    background-color: #f8c600; /* Màu vàng */
+    color: #2f3e46; /* Màu chữ đậm */
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+    flex-shrink: 0;
+	margin-left: 15px;
+}
+
+.date-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #f8c600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* để year có thể đặt tuyệt đối */
+    box-sizing: border-box;
+    padding: 6px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Content styling */
+.entry-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+/* Author styling at the bottom */
+.entry-footer .post-author {
+    font-size: 0.9em;
+    color: #555;
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* Additional layout tweaks */
+.entry-header, .post-date, .entry-footer {
+    margin: 0 15px;
+}
+
+/* Đảm bảo bố cục tiêu đề + date nằm cùng hàng */
+.entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* .entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
+
+/* @media (max-width: 600px) {
+    .entry-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .post-date {
+        margin-top: 10px;
+    }
+} */
+
+/* Trên mobile: day và date xuống hàng dưới tiêu đề */
+@media (max-width: 600px) {
+    .entry-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .post-date {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+}
+
+/* --- Circular date style --- */
+
+
+/* .date-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+    position: relative;
+} */
+
+.date-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+	padding-right: 15px;
+}
+
+/* .date-inner .day {
+    font-size: 18px;
+    font-weight: bold;
+} */
+
+.date-inner .day {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2f3e46;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Divider — gạch ngang nhỏ giữa ngày và tháng */
+.date-inner .divider {
+    width: 20px;            /* chiều dài gạch ngang */
+    height: 2px;            /* độ dày gạch */
+    background-color: #2f3e46;
+    display: block;
+    border-radius: 1px;
+}
+
+/* .date-inner .month {
+    font-size: 16px;
+    position: relative;
+} */
+
+/* Month - phía dưới gạch */
+.date-inner .month {
+    font-weight: 600;
+    color: #2f3e46;
+    display: block;
+	padding-top: 6px;
+}
+
+/* Năm nhỏ ở góc trên bên phải */
+.date-inner .year {
+    position: absolute;
+    right: -8px;
+    top: -5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Year nhỏ ở góc trên phải (nằm ngoài luồng) */
+.date-circle .year {
+    position: absolute;
+    top: 25px;
+    right: 6px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #2f3e46;
+    background: rgba(255,255,255,0); /* nếu muốn phông nền khác, chỉnh ở đây */
+    transform: translateY(0);
+    line-height: 1;
+	padding-right: 5px;
+}
+
+/* --- Đường gạch ngang giữa tiêu đề và nội dung --- */
+.single-post-page .entry-header {
+    border-bottom: 2px solid #e0e0e0; /* màu xám nhạt, có thể đổi */
+    padding-bottom: 15px; /* cách tiêu đề khỏi đường gạch */
+    margin-bottom: 25px;  /* cách nội dung bên dưới */
 }
