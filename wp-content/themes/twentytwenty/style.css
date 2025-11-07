@@ -7197,3 +7197,56 @@ body:not(.singular) main>article:not(:first-of-type) {
     padding-bottom: 15px; /* cách tiêu đề khỏi đường gạch */
     margin-bottom: 25px;  /* cách nội dung bên dưới */
 }
+
+/* === Simple Prev/Next Navigation === */
+.simple-prev-next {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.simple-nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  text-decoration: none;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.simple-nav-item:hover .title {
+  color: #0073aa;
+}
+
+.date-block {
+  font-family: "Georgia", serif;
+  text-align: center;
+  line-height: 1;
+  color: #333;
+  width: 40px;
+}
+
+.date-block .day {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.date-block .month {
+  font-size: 14px;
+  border-bottom: 1px solid #aaa;
+  display: inline-block;
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+}
+
+.date-block .year {
+  font-size: 13px;
+  color: #888;
+}
+
+.simple-nav-item .title {
+  font-size: 16px;
+  line-height: 1.5;
+  flex: 1;
+}
