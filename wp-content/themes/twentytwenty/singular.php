@@ -69,20 +69,42 @@ get_header();
                     </footer>
                 </div>
 
-                <!-- Cột phải: Sidebar -->
+                <!-- ✅ CỘT PHẢI (TIN TỨC MỚI NHẤT) -->
                 <aside class="post-sidebar-right">
-                    <div class="widget-box">
-                        <h3 class="widget-title">Bài viết mới</h3>
-                        <ul class="widget-list">
-                            <?php
-                            $recent_posts = wp_get_recent_posts( array( 'numberposts' => 5 ) );
-                            foreach( $recent_posts as $post_item ) {
-                                echo '<li><a href="' . get_permalink($post_item['ID']) . '">' . esc_html($post_item['post_title']) . '</a></li>';
-                            }
-                            ?>
-                        </ul>
+                <div class="widget-box news-box">
+                    <ul class="widget-list">
+                        <?php
+                        $recent_posts = wp_get_recent_posts(array(
+                            'numberposts' => 3, // hiển thị 3 bài
+                            'post_status' => 'publish',
+                            'exclude' => get_the_ID() // Loại trừ bài viết hiện tại
+                        ));
+                        foreach( $recent_posts as $post ) :
+                        ?>
+                            <li>
+                                <div class="news-date">
+                                    <div class="date-inner">
+                                        <span class="day"><?php echo get_the_date('d', $post['ID']); ?></span>
+                                        <span class="divider" aria-hidden="true"></span>
+                                        <span class="month"><?php echo get_the_date('m', $post['ID']); ?></span>
+                                    </div>
+                                    <span class="year"><?php echo get_the_date('y', $post['ID']); ?></span>
+                                </div>
+                                <div class="news-title">
+                                    <a href="<?php echo get_permalink($post['ID']); ?>">
+                                        <?php echo esc_html($post['post_title']); ?>
+                                    </a>
+                                </div>
+                            </li>
+                        <?php endforeach; wp_reset_query(); ?>
+                    </ul>
+
+                    <div class="news-more">
+                        <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">XEM TẤT CẢ TIN TỨC</a>
                     </div>
+                </div>
                 </aside>
+
 
             </div>
             <!-- ✅ HẾT PHẦN 3 CỘT -->
