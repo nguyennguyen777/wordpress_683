@@ -6914,6 +6914,14 @@ a.to-the-top>* {
 	color: currentColor;
 }
 
+/* ============================================================
+   CUSTOM STYLES - MODULE HEADER & NAVIGATION
+   ============================================================
+   Dùng cho: Header navigation menu colors và layout
+   File: header.php, navigation.php
+   ============================================================ */
+
+/* Menu item colors */
 .primary-menu li.menu-the-thao>a {
 	color: #6a6a6a !important;
 }
@@ -6926,15 +6934,16 @@ a.to-the-top>* {
 	color: #6a6a6a !important;
 }
 
+/* Search toggle spacing */
 .toggle-wrapper.search-toggle-wrapper {
 	margin-left: 35px;
 }
 
+/* Header navigation layout */
 .header-left .main-nav ul {
 	display: flex;
 	align-items: center;
 	height: 100px;
-	/* bằng với navbar */
 	background-color: #bdbdbd;
 }
 
@@ -6944,7 +6953,13 @@ a.to-the-top>* {
 	height: 100px;
 }
 
-/* -------- Post list layout (archive/home) -------- */
+/* ============================================================
+   CUSTOM STYLES - MODULE ARCHIVE/HOME POST LIST
+   ============================================================
+   Dùng cho: Trang chủ và archive - hiển thị danh sách bài viết dạng card
+   File: index.php, template-parts/content.php
+   ============================================================ */
+
 .post-list-row {
 	display: flex;
 	align-items: stretch;
@@ -6997,11 +7012,15 @@ body:not(.singular) main>article:not(:first-of-type) {
 	padding: 0 30rem 0;
 }
 
-/* Title styling */
+/* ============================================================
+   CUSTOM STYLES - MODULE SINGLE POST PAGE
+   ============================================================
+   Dùng cho: Trang chi tiết bài viết (single post)
+   File: singular.php
+   ============================================================ */
 
 .single-post-page {
     background-color: #fff;
-    /* padding: 10px 0; */
 }
 
 .entry-header .entry-title {
@@ -7010,20 +7029,7 @@ body:not(.singular) main>article:not(:first-of-type) {
     margin-bottom: 10px;
 }
 
-/* Date styling in a circular format */
-/* .post-date {
-    background-color: #f8d347;
-    color: #fff;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    font-size: 1.2em;
-    margin-bottom: 15px;
-	flex-shrink: 0;
-} */
+/* Date styling in a circular format - hiển thị ngày đăng bài */
 .post-date {
     background-color: #f8c600; /* Màu vàng */
     color: #2f3e46; /* Màu chữ đậm */
@@ -7082,23 +7088,6 @@ body:not(.singular) main>article:not(:first-of-type) {
     gap: 10px;
 }
 
-/* .entry-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-} */
-
-/* @media (max-width: 600px) {
-    .entry-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .post-date {
-        margin-top: 10px;
-    }
-} */
-
 /* Trên mobile: day và date xuống hàng dưới tiêu đề */
 @media (max-width: 600px) {
     .entry-header {
@@ -7112,17 +7101,7 @@ body:not(.singular) main>article:not(:first-of-type) {
     }
 }
 
-/* --- Circular date style --- */
-
-
-/* .date-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1.1;
-    position: relative;
-} */
-
+/* --- Circular date style - định dạng ngày trong vòng tròn --- */
 .date-inner {
     display: flex;
     flex-direction: column;
@@ -7133,11 +7112,6 @@ body:not(.singular) main>article:not(:first-of-type) {
     width: 100%;
 	padding-right: 15px;
 }
-
-/* .date-inner .day {
-    font-size: 18px;
-    font-weight: bold;
-} */
 
 .date-inner .day {
     font-size: 18px;
@@ -7155,11 +7129,6 @@ body:not(.singular) main>article:not(:first-of-type) {
     display: block;
     border-radius: 1px;
 }
-
-/* .date-inner .month {
-    font-size: 16px;
-    position: relative;
-} */
 
 /* Month - phía dưới gạch */
 .date-inner .month {
@@ -7199,6 +7168,13 @@ body:not(.singular) main>article:not(:first-of-type) {
     margin-bottom: 25px;  /* cách nội dung bên dưới */
 }
 
+/* ============================================================
+   CUSTOM STYLES - MODULE POST NAVIGATION (PREV/NEXT)
+   ============================================================
+   Dùng cho: Điều hướng bài viết trước/sau
+   File: template-parts/navigation.php
+   ============================================================ */
+
 .pagination-simple-column {
   display: flex;
   flex-direction: column;
@@ -7229,11 +7205,8 @@ body:not(.singular) main>article:not(:first-of-type) {
   font-family: 'Times New Roman', Times, serif;
 }
 
-.date-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* NOTE: .date-inner đã được định nghĩa ở trên (dòng ~7126) cho single post page
+   Phần này dùng cho navigation prev/next - có thể gộp lại nếu cần */
 
 .date-inner .day {
   font-size: 18px;
@@ -7266,7 +7239,13 @@ body:not(.singular) main>article:not(:first-of-type) {
   flex: 1;
 }
 
-/********************************* module-8-comments*/
+/* ============================================================
+   CUSTOM STYLES - MODULE 8: COMMENT FORM
+   ============================================================
+   Dùng cho: Form bình luận trên trang single post
+   File: comments.php, comment form template
+   ============================================================ */
+
 /* ==== Custom Comment Form ==== */
 .comment-respond {
 	background-color: #d6e6e1; /* nền xanh nhạt */
@@ -7338,7 +7317,13 @@ body:not(.singular) main>article:not(:first-of-type) {
   	background-color: #0073aa;
 }
 
-/********************************module-9-categories*/
+/* ============================================================
+   CUSTOM STYLES - MODULE 9: SINGLE POST 3-COLUMN LAYOUT
+   ============================================================
+   Dùng cho: Trang single post - layout 3 cột (Categories | Content | Recent Posts)
+   File: singular.php
+   ============================================================ */
+
 /* ======= BỐ CỤC 3 CỘT ======= */
 .post-layout-3col {
   display: grid;
@@ -7538,6 +7523,13 @@ body:not(.singular) main>article:not(:first-of-type) {
 }
 
 
+/* ============================================================
+   CUSTOM STYLES - MODULE 10: ARCHIVE/HOME 3-COLUMN LAYOUT
+   ============================================================
+   Dùng cho: Trang chủ và archive - layout 3 cột (Most Viewed | Posts | Comments)
+   File: index.php
+   ============================================================ */
+
 /* ======= ARCHIVE LAYOUT - 3 CỘT ======= */
 .archive-layout-wrapper {
   display: grid;
@@ -7721,6 +7713,124 @@ body:not(.singular) main>article:not(:first-of-type) {
 .comments-sidebar-link:hover {
   text-decoration: underline;
   color: #0052a3;
+}
+
+/* ======= MODULE 4: SEARCH FORM MODULE ======= */
+/* Styling cho Module 4 (Search form) - luôn hiển thị trên trang search */
+.search-form-module {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.search-form-module .search-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-form-module .search-field-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.search-form-module .search-field {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.search-form-module .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.search-form-module .search-submit {
+  padding: 12px 24px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-form-module .search-submit:hover {
+  background: #333;
+}
+
+/* ======= MODULE 13: PAGES WIDGET IN SEARCH SIDEBAR ======= */
+/* Styling cho widget Pages (Module 13) trong sidebar trái của trang search */
+.archive-sidebar-left .widget {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 25px;
+}
+
+.archive-sidebar-left .widget .widget-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0071e9;
+  margin: 0 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  text-transform: none;
+}
+
+.archive-sidebar-left .widget_pages ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.archive-sidebar-left .widget_pages li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0;
+}
+
+.archive-sidebar-left .widget_pages li:last-child {
+  border-bottom: none;
+}
+
+.archive-sidebar-left .widget_pages a {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  display: block;
+}
+
+.archive-sidebar-left .widget_pages a:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.archive-sidebar-left .widget_pages li li {
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 1px solid #e0e0e0;
+}
+
+/* ======= MODULE 15: SEARCH PAGE MODULE 15 ======= */
+/* Styling cho Module 15 - section dưới layout 3 cột trên trang search */
+.search-module-15 {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.search-module-15 .widget {
+  margin-bottom: 20px;
 }
 
 /* ======= RESPONSIVE ======= */
