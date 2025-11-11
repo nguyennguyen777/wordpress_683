@@ -85,58 +85,79 @@ get_header();
 		<?php
 	}
 
+	// Module 4: Search Form - LUÔN hiển thị trên trang search (cả khi có và không có kết quả)
+	if ( is_search() ) {
+		?>
+		<div class="search-form-module section-inner medium">
+			<?php
+			get_search_form(
+				array(
+					'aria_label' => __( 'Search', 'twentytwenty' ),
+				)
+			);
+			?>
+		</div><!-- .search-form-module -->
+		<?php
+	}
+
 	if ( have_posts() ) {
 		?>
 		
 		<div class="archive-layout-wrapper">
-			<!-- Cột trái: Xem nhiều -->
+			<!-- Cột trái: Module 13 (Pages) cho trang search, Xem nhiều cho trang khác -->
 			<aside class="archive-sidebar-left">
-				<div class="most-viewed-box">
-					<h2 class="most-viewed-title">Xem nhiều</h2>
-					<div class="most-viewed-content">
-						<?php
-						// Lấy 8 bài viết mới nhất (theo ngày tháng)
-						$most_viewed = new WP_Query(array(
-							'posts_per_page' => 8,
-							'post_status' => 'publish',
-							'orderby' => 'date', // Sắp xếp theo ngày đăng (bài viết mới nhất)
-							'order' => 'DESC'
-						));
-						
-						if ( $most_viewed->have_posts() ) {
-							$post_count = 0;
-							echo '<div class="most-viewed-columns">';
-							echo '<div class="most-viewed-col-left">';
+				<?php if ( is_search() && is_active_sidebar( 'sidebar-13' ) ) : ?>
+					<!-- Hiển thị Module 13 (Pages widget) trên trang search -->
+					<?php dynamic_sidebar( 'sidebar-13' ); ?>
+				<?php else : ?>
+					<!-- Hiển thị "Xem nhiều" cho các trang khác (archive, home) -->
+					<div class="most-viewed-box">
+						<h2 class="most-viewed-title">Xem nhiều</h2>
+						<div class="most-viewed-content">
+							<?php
+							// Lấy 8 bài viết mới nhất (theo ngày tháng)
+							$most_viewed = new WP_Query(array(
+								'posts_per_page' => 8,
+								'post_status' => 'publish',
+								'orderby' => 'date', // Sắp xếp theo ngày đăng (bài viết mới nhất)
+								'order' => 'DESC'
+							));
 							
-							while ( $most_viewed->have_posts() ) {
-								$most_viewed->the_post();
-								$post_count++;
+							if ( $most_viewed->have_posts() ) {
+								$post_count = 0;
+								echo '<div class="most-viewed-columns">';
+								echo '<div class="most-viewed-col-left">';
 								
-								if ( $post_count == 5 ) {
-									echo '</div><div class="most-viewed-divider"></div><div class="most-viewed-col-right">';
+								while ( $most_viewed->have_posts() ) {
+									$most_viewed->the_post();
+									$post_count++;
+									
+									if ( $post_count == 5 ) {
+										echo '</div><div class="most-viewed-divider"></div><div class="most-viewed-col-right">';
+									}
+									?>
+									<div class="most-viewed-item">
+										<span class="most-viewed-number"><?php echo $post_count; ?></span>
+										<a href="<?php echo esc_url( get_permalink() ); ?>" class="most-viewed-link">
+											<?php the_title(); ?>
+										</a>
+										<?php if ( get_comments_number() > 0 ) : ?>
+											<span class="most-viewed-comments">
+												<span class="comment-icon">💬</span>
+												<?php echo get_comments_number(); ?>
+											</span>
+										<?php endif; ?>
+									</div>
+									<?php
 								}
-								?>
-								<div class="most-viewed-item">
-									<span class="most-viewed-number"><?php echo $post_count; ?></span>
-									<a href="<?php echo esc_url( get_permalink() ); ?>" class="most-viewed-link">
-										<?php the_title(); ?>
-									</a>
-									<?php if ( get_comments_number() > 0 ) : ?>
-										<span class="most-viewed-comments">
-											<span class="comment-icon">💬</span>
-											<?php echo get_comments_number(); ?>
-										</span>
-									<?php endif; ?>
-								</div>
-								<?php
+								
+								echo '</div></div>';
+								wp_reset_postdata();
 							}
-							
-							echo '</div></div>';
-							wp_reset_postdata();
-						}
-						?>
+							?>
+						</div>
 					</div>
-				</div>
+				<?php endif; ?>
 			</aside>
 			
 			<!-- Cột giữa: Danh sách bài viết -->
@@ -194,21 +215,23 @@ get_header();
 		</div>
 		
 		<?php
-	} elseif ( is_search() ) {
-		?>
-
-		<div class="no-search-results-form section-inner thin">
-
-			<?php
-			get_search_form(
-				array(
-					'aria_label' => __( 'search again', 'twentytwenty' ),
-				)
-			);
+		// Module 15: Hiển thị dưới layout 3 cột khi search có kết quả
+		if ( is_search() && is_active_sidebar( 'sidebar-15' ) ) {
 			?>
-
-		</div><!-- .no-search-results -->
-
+			<div class="search-module-15 section-inner medium">
+				<?php dynamic_sidebar( 'sidebar-15' ); ?>
+			</div><!-- .search-module-15 -->
+			<?php
+		}
+		?>
+		
+		<?php
+	} elseif ( is_search() ) {
+		// Khi search không có kết quả, chỉ hiển thị thông báo (Module 4 đã hiển thị ở trên)
+		?>
+		<div class="no-search-results-message section-inner thin">
+			<p><?php _e( '', 'twentytwenty' ); ?></p>
+		</div><!-- .no-search-results-message -->
 		<?php
 	}
 	?>
