@@ -231,22 +231,26 @@ get_header();
 		if ( is_search() && is_active_sidebar( 'sidebar-15' ) ) {
 			?>
 			<div class="search-module-15 section-inner medium">
-				<?php dynamic_sidebar( 'sidebar-15' ); ?>
-			</div><!-- .search-module-15 -->
+				<h2 class="latest-news-title">Latest News</h2>
+				<div class="latest-news-timeline">
+					<?php dynamic_sidebar( 'sidebar-15' ); ?>
+				</div>
+			</div>
+
 			<?php
 		}
 		?>
 		
 		<?php
-	} elseif ( is_search() ) {
-		// Khi search không có kết quả, chỉ hiển thị thông báo (Module 4 đã hiển thị ở trên)
+		} elseif ( is_search() ) {
+			// Khi search không có kết quả, chỉ hiển thị thông báo (Module 4 đã hiển thị ở trên)
+			?>
+			<div class="no-search-results-message section-inner thin">
+				<p><?php _e( '', 'twentytwenty' ); ?></p>
+			</div><!-- .no-search-results-message -->
+			<?php
+		}
 		?>
-		<div class="no-search-results-message section-inner thin">
-			<p><?php _e( '', 'twentytwenty' ); ?></p>
-		</div><!-- .no-search-results-message -->
-		<?php
-	}
-	?>
 
 	<?php get_template_part( 'template-parts/pagination' ); ?>
 
