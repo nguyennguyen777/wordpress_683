@@ -459,6 +459,33 @@ function twentytwenty_sidebar_registration() {
 			)
 		)
 	);
+
+	// === Custom widget Latest News for Search Page Module 15 === //
+	function latest_news_timeline_widget() {
+		$latest_posts = new WP_Query(array(
+			'posts_per_page' => 3,
+			'post_status' => 'publish',
+			'orderby' => 'date',
+			'order' => 'DESC'
+		));
+
+		if ($latest_posts->have_posts()) {
+			echo '<ul>';
+			while ($latest_posts->have_posts()) {
+				$latest_posts->the_post();
+				echo '<li>';
+				echo '<span class="latest-news-date">' . get_the_date('j F, Y') . '</span>';
+				echo '<a href="' . get_permalink() . '">' . get_the_title() . '</a>';
+				echo '<div class="latest-news-excerpt">' . wp_trim_words(get_the_excerpt(), 20, '...') . '</div>';
+				echo '</li>';
+			}
+			echo '</ul>';
+			echo '</div>';
+			wp_reset_postdata();
+		}
+	}
+	add_shortcode('latest_news_timeline', 'latest_news_timeline_widget');
+
 }
 
 add_action( 'widgets_init', 'twentytwenty_sidebar_registration' );
