@@ -435,6 +435,30 @@ function twentytwenty_sidebar_registration() {
 			)
 		)
 	);
+
+	// Search Page Sidebar Left (Module 13 - Pages).
+	register_sidebar(
+		array_merge(
+			$shared_args,
+			array(
+				'name'        => __( 'Search Page Sidebar Left (Module 13)', 'twentytwenty' ),
+				'id'          => 'sidebar-13',
+				'description' => __( 'Widgets in this area will be displayed in the left sidebar on search/archive pages. Use Pages widget here for Module 13.', 'twentytwenty' ),
+			)
+		)
+	);
+
+	// Search Page Module 15 (Below search results).
+	register_sidebar(
+		array_merge(
+			$shared_args,
+			array(
+				'name'        => __( 'Search Page Module 15', 'twentytwenty' ),
+				'id'          => 'sidebar-15',
+				'description' => __( 'Widgets in this area will be displayed below the search results on search pages (Module 15).', 'twentytwenty' ),
+			)
+		)
+	);
 }
 
 add_action( 'widgets_init', 'twentytwenty_sidebar_registration' );

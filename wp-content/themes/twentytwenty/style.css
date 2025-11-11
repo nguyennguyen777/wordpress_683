@@ -6500,6 +6500,7 @@ a.to-the-top>* {
 		font-size: 5.6rem;
 		line-height: 1.2;
 		margin-bottom: 6rem;
+		margin-top: 6rem;
 	}
 
 	.comment-respond p.comment-notes,
@@ -6913,6 +6914,14 @@ a.to-the-top>* {
 	color: currentColor;
 }
 
+/* ============================================================
+   CUSTOM STYLES - MODULE HEADER & NAVIGATION
+   ============================================================
+   Dùng cho: Header navigation menu colors và layout
+   File: header.php, navigation.php
+   ============================================================ */
+
+/* Menu item colors */
 .primary-menu li.menu-the-thao>a {
 	color: #6a6a6a !important;
 }
@@ -6925,15 +6934,16 @@ a.to-the-top>* {
 	color: #6a6a6a !important;
 }
 
+/* Search toggle spacing */
 .toggle-wrapper.search-toggle-wrapper {
 	margin-left: 35px;
 }
 
+/* Header navigation layout */
 .header-left .main-nav ul {
 	display: flex;
 	align-items: center;
 	height: 100px;
-	/* bằng với navbar */
 	background-color: #bdbdbd;
 }
 
@@ -6943,7 +6953,13 @@ a.to-the-top>* {
 	height: 100px;
 }
 
-/* -------- Post list layout (archive/home) -------- */
+/* ============================================================
+   CUSTOM STYLES - MODULE ARCHIVE/HOME POST LIST
+   ============================================================
+   Dùng cho: Trang chủ và archive - hiển thị danh sách bài viết dạng card
+   File: index.php, template-parts/content.php
+   ============================================================ */
+
 .post-list-row {
 	display: flex;
 	align-items: stretch;
@@ -6996,11 +7012,15 @@ body:not(.singular) main>article:not(:first-of-type) {
 	padding: 0 30rem 0;
 }
 
-/* Title styling */
+/* ============================================================
+   CUSTOM STYLES - MODULE SINGLE POST PAGE
+   ============================================================
+   Dùng cho: Trang chi tiết bài viết (single post)
+   File: singular.php
+   ============================================================ */
 
 .single-post-page {
     background-color: #fff;
-    padding: 10px 0;
 }
 
 .entry-header .entry-title {
@@ -7009,20 +7029,7 @@ body:not(.singular) main>article:not(:first-of-type) {
     margin-bottom: 10px;
 }
 
-/* Date styling in a circular format */
-/* .post-date {
-    background-color: #f8d347;
-    color: #fff;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    font-size: 1.2em;
-    margin-bottom: 15px;
-	flex-shrink: 0;
-} */
+/* Date styling in a circular format - hiển thị ngày đăng bài */
 .post-date {
     background-color: #f8c600; /* Màu vàng */
     color: #2f3e46; /* Màu chữ đậm */
@@ -7081,23 +7088,6 @@ body:not(.singular) main>article:not(:first-of-type) {
     gap: 10px;
 }
 
-/* .entry-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-} */
-
-/* @media (max-width: 600px) {
-    .entry-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .post-date {
-        margin-top: 10px;
-    }
-} */
-
 /* Trên mobile: day và date xuống hàng dưới tiêu đề */
 @media (max-width: 600px) {
     .entry-header {
@@ -7111,17 +7101,7 @@ body:not(.singular) main>article:not(:first-of-type) {
     }
 }
 
-/* --- Circular date style --- */
-
-
-/* .date-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1.1;
-    position: relative;
-} */
-
+/* --- Circular date style - định dạng ngày trong vòng tròn --- */
 .date-inner {
     display: flex;
     flex-direction: column;
@@ -7132,11 +7112,6 @@ body:not(.singular) main>article:not(:first-of-type) {
     width: 100%;
 	padding-right: 15px;
 }
-
-/* .date-inner .day {
-    font-size: 18px;
-    font-weight: bold;
-} */
 
 .date-inner .day {
     font-size: 18px;
@@ -7155,17 +7130,12 @@ body:not(.singular) main>article:not(:first-of-type) {
     border-radius: 1px;
 }
 
-/* .date-inner .month {
-    font-size: 16px;
-    position: relative;
-} */
-
 /* Month - phía dưới gạch */
 .date-inner .month {
     font-weight: 600;
     color: #2f3e46;
     display: block;
-	padding-top: 6px;
+	padding-top: 6px !important;
 }
 
 /* Năm nhỏ ở góc trên bên phải */
@@ -7198,55 +7168,699 @@ body:not(.singular) main>article:not(:first-of-type) {
     margin-bottom: 25px;  /* cách nội dung bên dưới */
 }
 
-/* === Simple Prev/Next Navigation === */
-.simple-prev-next {
+/* ============================================================
+   CUSTOM STYLES - MODULE POST NAVIGATION (PREV/NEXT)
+   ============================================================
+   Dùng cho: Điều hướng bài viết trước/sau
+   File: template-parts/navigation.php
+   ============================================================ */
+
+.pagination-simple-column {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 28px;
   margin-top: 40px;
 }
 
-.simple-nav-item {
+.nav-item {
   display: flex;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center !important;
+  gap: 24px;
   text-decoration: none;
   color: #222;
   transition: color 0.3s ease;
 }
 
-.simple-nav-item:hover .title {
+.nav-item:hover .nav-title {
   color: #0073aa;
 }
 
-.date-block {
-  font-family: "Georgia", serif;
+.nav-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  line-height: 1;
-  color: #333;
-  width: 40px;
+  line-height: 1.2;
+  padding-right: 15px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.date-block .day {
-  font-size: 16px;
+/* NOTE: .date-inner đã được định nghĩa ở trên (dòng ~7126) cho single post page
+   Phần này dùng cho navigation prev/next - có thể gộp lại nếu cần */
+
+.date-inner .day {
+  font-size: 18px;
   font-weight: 600;
+  margin-bottom: 4px;
 }
 
-.date-block .month {
-  font-size: 14px;
-  border-bottom: 1px solid #aaa;
-  display: inline-block;
-  padding-bottom: 3px;
-  margin-bottom: 3px;
+.date-inner .divider {
+  width: 16px;
+  height: 1px;
+  background-color: #333;
+  margin: 2px 0;
+  display: block;
 }
 
-.date-block .year {
-  font-size: 13px;
-  color: #888;
+.nav-date .date-inner .month {
+  font-size: 17px;
+  padding-top: 0 !important;
 }
 
-.simple-nav-item .title {
+.nav-date .year {
+  font-size: 17px;
+  margin-top: -30px;
+  padding-left: 25px;
+}
+
+.nav-title {
   font-size: 16px;
   line-height: 1.5;
   flex: 1;
+}
+
+/* ============================================================
+   CUSTOM STYLES - MODULE 8: COMMENT FORM
+   ============================================================
+   Dùng cho: Form bình luận trên trang single post
+   File: comments.php, comment form template
+   ============================================================ */
+
+/* ==== Custom Comment Form ==== */
+.comment-respond {
+	background-color: #d6e6e1; /* nền xanh nhạt */
+	padding: 40px;
+	border-radius: 6px;
+	margin-top: 40px;
+}
+
+.comment-reply-title {
+	font-size: 28px;
+	font-weight: 500;
+	margin-bottom: 15px;
+	color: #133b36;
+	padding-right: 360px;
+}
+
+.logged-in-as {
+	font-size: 14px !important;
+	text-align: left !important;
+    margin-top: 0px !important;
+	margin-bottom: 20px !important;
+}
+
+/* Màu link "Edit your profile" và "Log out" */
+.logged-in-as a {
+	color: #6d6d6d !important;
+}
+
+/* Màu link khi hover */
+.logged-in-as a:hover {
+  color: #005077 !important;
+  text-decoration: underline;
+}
+
+.comment-form-comment label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 6px;
+	font-size: 14px;
+}
+
+.comment-form-comment textarea {
+	width: 100%;
+	border: 2px solid #333;
+	border-radius: 2px;
+	min-height: 120px;
+	padding: 10px;
+	font-size: 15px;
+	font-family: inherit;
+	resize: vertical;
+}
+
+.comment-form {
+  	max-width: 600px;
+}
+
+.form-submit input[type="submit"] {
+	background-color: #111;
+	color: #fff;
+	border: none;
+	padding: 10px 22px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	text-transform: none !important;
+}
+
+.form-submit input[type="submit"]:hover {
+  	background-color: #0073aa;
+}
+
+/* ============================================================
+   CUSTOM STYLES - MODULE 9: SINGLE POST 3-COLUMN LAYOUT
+   ============================================================
+   Dùng cho: Trang single post - layout 3 cột (Categories | Content | Recent Posts)
+   File: singular.php
+   ============================================================ */
+
+/* ======= BỐ CỤC 3 CỘT ======= */
+.post-layout-3col {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 40px;
+  align-items: flex-start;
+  margin: 40px 0;
+}
+
+/* ======= ĐƯỜNG GẠCH PHÂN CÁCH ======= */
+.section-divider {
+  border: none;
+  border-top: 2px solid #eee;
+  margin: 40px 0;
+}
+
+/* ======= CỘT TRÁI (CATEGORIES) ======= */
+.post-sidebar-left .category-box {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 15px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.category-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 5px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list li {
+  position: relative;
+  padding: 6px 0 6px 20px; /* tạo khoảng trống bên trái cho chấm vàng */
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.category-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  background-color: #ffcc00; /* 🎯 màu vàng */
+  border-radius: 50%;
+}
+
+.category-list a {
+  color: #0073aa;
+  text-decoration: none;
+}
+
+.category-list a:hover {
+  text-decoration: underline;
+}
+
+/* ======= CỘT PHẢI (BÀI VIẾT MỚI NHẤT) ======= */
+.post-sidebar-right .widget-box {
+  background: #48c0c7; /* Màu nền xanh như hình */
+  padding: 20px 0 0 0;
+  color: #fff;
+}
+
+.post-sidebar-right .widget-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: none;
+}
+
+/* Danh sách bài viết mới */
+.widget-list {
+  list-style: none;
+  padding: 4px;
+  margin: 0;
+}
+
+.widget-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+}
+
+.widget-list li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Ngày tháng năm */
+/* ======= NGÀY THÁNG NĂM (NEWS DATE - giống hình) ======= */
+.news-date {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  position: relative;
+  margin-right: 40px;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgba(255, 255, 255, 0.9);
+  flex-shrink: 0;
+}
+
+.news-date .date-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  line-height: 1.2;
+}
+
+.news-date .day {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #fff;
+
+}
+
+.news-date .divider {
+  width: 20px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 2px 0;
+}
+
+.news-date .month {
+  font-size: 16px;
+  margin-top: 2px;
+  color: #fff;
+    padding-top: 0 !important;
+}
+
+.news-date .year {
+  font-size: 16px;
+  position: absolute;
+  right: -5px;
+  top: 10px;
+  opacity: 0.9;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Tiêu đề bài viết */
+.news-title {
+  flex: 1;
+}
+
+.widget-list a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.5;
+  display: block;
+}
+
+.widget-list a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* Nút xem tất cả tin tức */
+.news-more {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.news-more a {
+  display: block;
+  width: 100%;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.news-more a:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   CUSTOM STYLES - MODULE 10: ARCHIVE/HOME 3-COLUMN LAYOUT
+   ============================================================
+   Dùng cho: Trang chủ và archive - layout 3 cột (Most Viewed | Posts | Comments)
+   File: index.php
+   ============================================================ */
+
+/* ======= ARCHIVE LAYOUT - 3 CỘT ======= */
+.archive-layout-wrapper {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.archive-sidebar-left,
+.archive-sidebar-right {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.most-viewed-box {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+.most-viewed-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  text-transform: none;
+}
+
+.most-viewed-content {
+  width: 100%;
+}
+
+.most-viewed-columns {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.most-viewed-col-left,
+.most-viewed-col-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.most-viewed-divider {
+  width: 1px;
+  background-color: #e0e0e0;
+  margin: 0 15px;
+  align-self: stretch;
+}
+
+.most-viewed-item {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 0;
+  padding-right: 0;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Đảm bảo đường phân cách liền mạch - giữ border cho tất cả items */
+.most-viewed-col-left .most-viewed-item:last-child,
+.most-viewed-col-right .most-viewed-item:last-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Đảm bảo các items ở cùng vị trí có cùng padding và alignment */
+.most-viewed-col-left .most-viewed-item,
+.most-viewed-col-right .most-viewed-item {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.most-viewed-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 35px;
+}
+
+.most-viewed-link {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1;
+  display: block;
+}
+
+.most-viewed-link:hover {
+  text-decoration: underline;
+  color: #0066cc;
+}
+
+.most-viewed-comments {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #666;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.comment-icon {
+  font-size: 14px;
+}
+
+.archive-posts-content {
+  min-width: 0;
+}
+
+.comments-sidebar-box {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+.comments-sidebar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 20px 0;
+  padding-bottom: 10px;
+  text-transform: none;
+  position: relative;
+  display: inline-block;
+  border-bottom: none;
+}
+
+.comments-sidebar-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.comments-sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comments-sidebar-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comments-sidebar-item:last-child {
+  border-bottom: none;
+}
+
+.comments-sidebar-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.5;
+  display: block;
+}
+
+.comments-sidebar-link:hover {
+  text-decoration: underline;
+  color: #0052a3;
+}
+
+/* ======= MODULE 4: SEARCH FORM MODULE ======= */
+/* Styling cho Module 4 (Search form) - luôn hiển thị trên trang search */
+.search-form-module {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.search-form-module .search-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-form-module .search-field-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.search-form-module .search-field {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.search-form-module .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.search-form-module .search-submit {
+  padding: 12px 24px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-form-module .search-submit:hover {
+  background: #333;
+}
+
+/* ======= MODULE 13: PAGES WIDGET IN SEARCH SIDEBAR ======= */
+/* Styling cho widget Pages (Module 13) trong sidebar trái của trang search */
+.archive-sidebar-left .widget {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 25px;
+}
+
+.archive-sidebar-left .widget .widget-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0071e9;
+  margin: 0 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  text-transform: none;
+}
+
+.archive-sidebar-left .widget_pages ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.archive-sidebar-left .widget_pages li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0;
+}
+
+.archive-sidebar-left .widget_pages li:last-child {
+  border-bottom: none;
+}
+
+.archive-sidebar-left .widget_pages a {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  display: block;
+}
+
+.archive-sidebar-left .widget_pages a:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.archive-sidebar-left .widget_pages li li {
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 1px solid #e0e0e0;
+}
+
+/* ======= MODULE 15: SEARCH PAGE MODULE 15 ======= */
+/* Styling cho Module 15 - section dưới layout 3 cột trên trang search */
+.search-module-15 {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.search-module-15 .widget {
+  margin-bottom: 20px;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 992px) {
+  .archive-layout-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .archive-sidebar-left,
+  .archive-sidebar-right {
+    position: static;
+  }
+  
+  .most-viewed-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .most-viewed-divider {
+    display: none;
+  }
+  
+  .post-layout-3col {
+    grid-template-columns: 1fr;
+  }
+  .post-sidebar-left,
+  .post-sidebar-right {
+    order: 2;
+  }
+  .post-content-area {
+    order: 1;
+  }
 }
