@@ -184,7 +184,6 @@ get_header();
 					<h2 class="comments-sidebar-title">Comments</h2>
 					<ul class="comments-sidebar-list">
 						<?php
-						// Lấy 3 comments mới nhất
 						$recent_comments = get_comments(array(
 							'number' => 3,
 							'status' => 'approve',
@@ -192,16 +191,28 @@ get_header();
 							'orderby' => 'comment_date',
 							'order' => 'DESC'
 						));
-						
+
 						if ( ! empty( $recent_comments ) ) {
 							foreach ( $recent_comments as $comment ) {
-								$comment_text = wp_trim_words( $comment->comment_content, 10, '...' );
-								$comment_link = get_comment_link( $comment );
+								$comment_author = get_comment_author( $comment );
+								$comment_text   = wp_trim_words( $comment->comment_content, 30, '...' );
+								$comment_link   = get_comment_link( $comment );
+								$avatar         = get_avatar( $comment, 64 ); // avatar 64px
 								?>
 								<li class="comments-sidebar-item">
-									<a href="<?php echo esc_url( $comment_link ); ?>" class="comments-sidebar-link">
-										<?php echo esc_html( $comment_text ); ?>
-									</a>
+									<div class="comment-wrapper">
+										<div class="comment-avatar">
+											<?php echo $avatar; ?>
+										</div>
+										<div class="comment-body">
+											<div class="comment-author">
+												<?php echo esc_html( $comment_author ); ?>
+											</div>
+											<div class="comment-text">
+												<?php echo esc_html( $comment_text ); ?>
+											</div>
+										</div>
+									</div>
 								</li>
 								<?php
 							}
@@ -210,6 +221,7 @@ get_header();
 						}
 						?>
 					</ul>
+
 				</div>
 			</aside>
 		</div>
