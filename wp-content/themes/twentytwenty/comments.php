@@ -17,124 +17,120 @@ if ( post_password_required() ) {
 	return;
 }
 
-if ( $comments ) {
+// Lấy danh sách comments
+$comments = get_comments( array(
+	'post_id' => get_the_ID(),
+	'status'  => 'approve',
+	'order'   => 'DESC',
+) );
+
+// Lấy ID tác giả bài viết
+$post_author_id = get_the_author_meta( 'ID' );
+
+$commenter          = wp_get_current_commenter();
+$require_name_email = (bool) get_option( 'require_name_email' );
+$aria_required_attr = $require_name_email ? ' aria-required="true" required' : '';
+$required_indicator = $require_name_email ? ' <span class="required">*</span>' : '';
+
+$comment_field_markup  = '<div class="comment-form-inner">';
+$comment_field_markup .= '<div class="make-post-tab">Make a Post</div>';
+$comment_field_markup .= '<div class="comment-textarea-wrapper">';
+$comment_field_markup .= '<textarea id="comment" name="comment" placeholder="What are you thinking..." aria-required="true"></textarea>';
+$comment_field_markup .= '<div class="form-submit-wrapper-inline"><input name="submit" type="submit" id="submit" class="submit share-btn" value="share" /></div>';
+$comment_field_markup .= '</div>';
+
+if ( ! is_user_logged_in() ) {
+	$comment_field_markup .= '<div class="comment-extra-fields">';
+	$comment_field_markup .= '<div class="comment-extra-field comment-form-author">';
+	$comment_field_markup .= '<label for="author">' . esc_html__( 'Name', 'twentytwenty' ) . $required_indicator . '</label>';
+	$comment_field_markup .= '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" placeholder="' . esc_attr__( 'Your name', 'twentytwenty' ) . '"' . $aria_required_attr . ' />';
+	$comment_field_markup .= '</div>';
+	$comment_field_markup .= '<div class="comment-extra-field comment-form-email">';
+	$comment_field_markup .= '<label for="email">' . esc_html__( 'Email', 'twentytwenty' ) . $required_indicator . '</label>';
+	$comment_field_markup .= '<input id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" placeholder="' . esc_attr__( 'Your email', 'twentytwenty' ) . '"' . $aria_required_attr . ' />';
+	$comment_field_markup .= '</div>';
+	$comment_field_markup .= '</div>';
+}
+
+$comment_field_markup .= '</div>';
+
+// Hiển thị danh sách comments
+if ( ! empty( $comments ) ) {
 	?>
-
-	<div class="comments" id="comments">
-
+	<div class="comments-feed" id="comments">
 		<?php
-		$comments_number = get_comments_number();
+		foreach ( $comments as $comment ) {
+			$comment_author_id = $comment->user_id;
+			$is_author = ( $comment_author_id && $comment_author_id == $post_author_id );
+			
+			// Format ngày tháng theo tiếng Việt
+			$comment_timestamp = strtotime( $comment->comment_date );
+			$day = date( 'j', $comment_timestamp );
+			$month_num = date( 'n', $comment_timestamp );
+			$year = date( 'Y', $comment_timestamp );
+			$time = date_i18n( 'g:i a', $comment_timestamp );
+			
+			// Chuyển số tháng sang tiếng Việt
+			$months_vi = array(
+				1 => 'một', 2 => 'hai', 3 => 'ba', 4 => 'tư',
+				5 => 'năm', 6 => 'sáu', 7 => 'bảy', 8 => 'tám',
+				9 => 'chín', 10 => 'mười', 11 => 'mười một', 12 => 'mười hai'
+			);
+			$month_vi = isset( $months_vi[ $month_num ] ) ? $months_vi[ $month_num ] : $month_num;
+			
+			$comment_date = sprintf( '%d Tháng %s, %d vào lúc %s', $day, $month_vi, $year, $time );
+			?>
+			<div class="comment-item">
+				<div class="comment-avatar">
+					<?php echo get_avatar( $comment, 64 ); ?>
+				</div>
+				<div class="comment-content">
+					<div class="comment-author-name"><?php echo esc_html( get_comment_author( $comment ) ); ?></div>
+					<div class="comment-date"><?php echo esc_html( $comment_date ); ?></div>
+					<div class="comment-text"><?php echo esc_html( $comment->comment_content ); ?></div>
+					<div class="comment-actions">
+						<button class="comment-reply-btn">BÌNH LUẬN</button>
+						<?php if ( $is_author && $comment_author_id ) : ?>
+							<a href="<?php echo esc_url( get_author_posts_url( $comment_author_id ) ); ?>" class="comment-author-link">BỞI TÁC GIẢ</a>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
 		?>
-
-		<div class="comments-header section-inner small max-percentage">
-
-			<h2 class="comment-reply-title">
-			<?php
-			if ( ! have_comments() ) {
-				_e( 'Leave a comment', 'twentytwenty' );
-			} elseif ( '1' === $comments_number ) {
-				/* translators: %s: Post title. */
-				printf( _x( 'One reply on &ldquo;%s&rdquo;', 'comments title', 'twentytwenty' ), get_the_title() );
-			} else {
-				printf(
-					/* translators: 1: Number of comments, 2: Post title. */
-					_nx(
-						'%1$s reply on &ldquo;%2$s&rdquo;',
-						'%1$s replies on &ldquo;%2$s&rdquo;',
-						$comments_number,
-						'comments title',
-						'twentytwenty'
-					),
-					number_format_i18n( $comments_number ),
-					get_the_title()
-				);
-			}
-
-			?>
-			</h2><!-- .comments-title -->
-
-		</div><!-- .comments-header -->
-
-		<div class="comments-inner section-inner thin max-percentage">
-
-			<?php
-			wp_list_comments(
-				array(
-					'walker'      => new TwentyTwenty_Walker_Comment(),
-					'avatar_size' => 120,
-					'style'       => 'div',
-				)
-			);
-
-			$comment_pagination = paginate_comments_links(
-				array(
-					'echo'      => false,
-					'end_size'  => 0,
-					'mid_size'  => 0,
-					'next_text' => __( 'Newer Comments', 'twentytwenty' ) . ' <span aria-hidden="true">&rarr;</span>',
-					'prev_text' => '<span aria-hidden="true">&larr;</span> ' . __( 'Older Comments', 'twentytwenty' ),
-				)
-			);
-
-			if ( $comment_pagination ) {
-				$pagination_classes = '';
-
-				// If we're only showing the "Next" link, add a class indicating so.
-				if ( false === strpos( $comment_pagination, 'prev page-numbers' ) ) {
-					$pagination_classes = ' only-next';
-				}
-				?>
-
-				<nav class="comments-pagination pagination<?php echo $pagination_classes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static output ?>" aria-label="<?php esc_attr_e( 'Comments', 'twentytwenty' ); ?>">
-					<?php echo wp_kses_post( $comment_pagination ); ?>
-				</nav>
-
-				<?php
-			}
-			?>
-
-		</div><!-- .comments-inner -->
-
-	</div><!-- comments -->
-
+	</div>
 	<?php
 }
 
+// Hiển thị form comment
 if ( comments_open() || pings_open() ) {
-
-	if ( $comments ) {
-		echo '<hr class="styled-separator is-style-wide" aria-hidden="true" />';
-	}
-	/* module-8-comments */
-	comment_form(
-		array(
-			'class_form'         => 'comment-form section-inner thin max-percentage',
-			'title_reply'        => __('Leave a comment', 'twentytwenty'),
-			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
-			'title_reply_after'  => '</h2>',
-			'label_submit'       => __('Post Comment', 'twentytwenty'),
-			'comment_field'      =>
-				'<p class="comment-form-comment">
-					<label for="comment">' . __( 'Comment *', 'twentytwenty' ) . '</label>
-					<textarea id="comment" name="comment" cols="45" rows="6" aria-required="true"></textarea>
-				</p>',
-		)
-	);
-
-
-} elseif ( is_single() ) {
-
-	if ( $comments ) {
-		echo '<hr class="styled-separator is-style-wide" aria-hidden="true" />';
-	}
-
 	?>
-
+	<div class="comment-form-wrapper">
+		<?php
+		comment_form(
+			array(
+				'class_form'         => 'comment-form make-post-form',
+				'title_reply'        => '',
+				'title_reply_before' => '',
+				'title_reply_after'  => '',
+				'label_submit'       => 'share',
+				'submit_button'      => '<input name="%1$s" type="submit" id="%2$s" class="%3$s share-btn" value="%4$s" />',
+				'submit_field'       => '<div class="form-submit-wrapper" style="display:none;">%1$s %2$s</div>',
+				'comment_field'      => $comment_field_markup,
+				'fields'             => array(),
+				'comment_notes_before' => '',
+				'comment_notes_after'  => '',
+				'logged_in_as'       => '',
+			)
+		);
+		?>
+	</div>
+	<?php
+} elseif ( is_single() ) {
+	?>
 	<div class="comment-respond" id="respond">
-
 		<p class="comments-closed"><?php _e( 'Comments are closed.', 'twentytwenty' ); ?></p>
-
-	</div><!-- #respond -->
-
+	</div>
 	<?php
 }

@@ -46,19 +46,32 @@
 
 	<!--Prev/Next Post-->
 	<div class="post-navigation-wrapper">
-		<?php get_template_part( 'template-parts/navigation' ); ?>
+		<?php get_template_part( 'template-parts/navigation' );?>
 	</div>
 
     <?php else : ?>
 
     <div class="post-list-row">
+		<?php if ( has_post_thumbnail() ) : ?>
+			<div class="post-thumbnail">
+				<a href="<?php the_permalink(); ?>">
+					<?php the_post_thumbnail('medium'); ?>
+				</a>
+			</div>
+		<?php endif; ?>
         <div class="post-date-badge">
             <div class="post-date-day"><?php echo get_the_date( 'd' ); ?></div>
             <div class="post-date-month">THÁNG <?php echo get_the_date( 'm' ); ?></div>
         </div>
         <div class="post-list-content">
             <h2 class="entry-title heading-size-1"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h2>
-            <div class="entry-excerpt"><?php echo wp_kses_post( wpautop( get_the_excerpt() ) ); ?></div>
+            <?php
+			$excerpt = get_the_excerpt();
+			$excerpt = mb_substr( $excerpt, 0, 100 ) . '[...]'; // chỉ lấy 120 ký tự đầu
+			?>
+			<div class="entry-excerpt"><?php echo wp_kses_post( wpautop( $excerpt ) ); ?></div>
+
+
         </div>
     </div>
 

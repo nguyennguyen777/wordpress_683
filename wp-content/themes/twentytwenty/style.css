@@ -5331,7 +5331,7 @@ a.to-the-top>* {
 	}
 
 	h2.entry-title {
-		font-size: 4.4rem;
+		font-size: 2.4rem;
 	}
 
 	/* SEARCH RESULTS */
@@ -6325,8 +6325,8 @@ a.to-the-top>* {
 	/* Site Pagination ----------------------- */
 
 	.pagination .nav-links {
-		justify-content: space-between;
-		margin: 0;
+		justify-content: center;
+		margin-bottom: 10px;
 		width: 100%;
 	}
 
@@ -6967,16 +6967,20 @@ a.to-the-top>* {
 	background: #ffffff; /* card nền trắng mỗi post */
 	border: 1px solid #e5e5e5;
 	border-radius: 4px;
-	padding: 18px 20px;
+	padding: 10px 10px;
 	margin: 10px 0; /* tách biệt giữa các bài (đã giảm) */
 	box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
 .post-date-badge {
-	min-width: 88px;
-	text-align: center;
-	padding: 4px 10px 4px 0;
-	border-right: 4px solid #cfcfcf; /* vạch đứng dày hơn */
+    min-width: 88px;
+    text-align: center;
+    padding: 4px 10px 4px 0;
+    border-right: 4px solid #cfcfcf;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .post-date-day {
@@ -7248,7 +7252,7 @@ body:not(.singular) main>article:not(:first-of-type) {
 
 /* ==== Custom Comment Form ==== */
 .comment-respond {
-	background-color: #d6e6e1; /* nền xanh nhạt */
+	background-color: #fff;
 	padding: 40px;
 	border-radius: 6px;
 	margin-top: 40px;
@@ -7687,18 +7691,18 @@ body:not(.singular) main>article:not(:first-of-type) {
   background-color: #e0e0e0;
 }
 
-.comments-sidebar-list {
+.home-comments{
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.comments-sidebar-item {
+.home-comments .comments-sidebar-item {
   padding: 12px 0;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.comments-sidebar-item:last-child {
+.home-comments .comments-sidebar-item:last-child {
   border-bottom: none;
 }
 
@@ -7768,6 +7772,11 @@ body:not(.singular) main>article:not(:first-of-type) {
 
 /* ======= MODULE 13: PAGES WIDGET IN SEARCH SIDEBAR ======= */
 /* Styling cho widget Pages (Module 13) trong sidebar trái của trang search */
+.archive-sidebar-left .recent-posts-widget-with-thumbnails a .rpwwt-post-title,
+.archive-sidebar-left .recent-posts-widget-with-thumbnails a {
+  text-decoration: none !important;
+}
+
 .archive-sidebar-left .widget {
   background: #fff;
   padding: 20px;
@@ -7785,40 +7794,45 @@ body:not(.singular) main>article:not(:first-of-type) {
   text-transform: none;
 }
 
-.archive-sidebar-left .widget_pages ul {
+.archive-sidebar-left .recent-posts-widget-with-thumbnails .rpwwt-post-title ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.archive-sidebar-left .widget_pages li {
+.archive-sidebar-left .recent-posts-widget-with-thumbnails .rpwwt-post-title li {
   padding: 12px 0;
   border-bottom: 1px solid #e0e0e0;
   margin: 0;
 }
 
-.archive-sidebar-left .widget_pages li:last-child {
+.archive-sidebar-left .recent-posts-widget-with-thumbnails li:last-child {
   border-bottom: none;
 }
 
-.archive-sidebar-left .widget_pages a {
-  color: #000;
-  text-decoration: none;
-  font-size: 14px;
+.archive-sidebar-left .recent-posts-widget-with-thumbnails .rpwwt-post-title {
+  position: relative;
+	color: #000 !important;
+  text-decoration: none !important;
+  font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
-  display: block;
+  display: inline-block;
 }
 
-.archive-sidebar-left .widget_pages a:hover {
+.archive-sidebar-left .recent-posts-widget-with-thumbnails .rpwwt-post-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 40px; /* 👉 chỉnh độ dài gạch dưới tại đây */
+  height: 3px;
+  background: #2d2d2d;
+}
+
+.archive-sidebar-left .recent-posts-widget-with-thumbnails .rpwwt-post-title:hover {
   color: #0066cc;
   text-decoration: underline;
-}
-
-.archive-sidebar-left .widget_pages li li {
-  margin-left: 20px;
-  padding-left: 15px;
-  border-left: 1px solid #e0e0e0;
 }
 
 /* ===== MODULE 15 - Latest News Timeline ===== */
@@ -7923,17 +7937,17 @@ body:not(.singular) main>article:not(:first-of-type) {
 
 
 /*MODULE 14*/
-.comments-sidebar-list {
+.search-comments {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.comments-sidebar-item {
+.search-comments .comments-sidebar-item {
 	margin: 0;
 }
 
-.comment-wrapper {
+.search-comments .comment-wrapper {
   display: flex;
   align-items: flex-start;
   position: relative;
@@ -7949,12 +7963,31 @@ body:not(.singular) main>article:not(:first-of-type) {
   height: 50px;
 }
 
+/* Chỉ áp dụng cho avatar trong danh sách comment của trang search (cột 3) */
+.search-comments .comment-avatar {
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .comment-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: 1px solid #ccc;
   background: #f7f7f7;
+}
+
+.search-comments .comment-avatar img {
+  border-radius: 0;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  background-color: #fff;
 }
 
 .comment-body {
@@ -8005,4 +8038,307 @@ body:not(.singular) main>article:not(:first-of-type) {
   font-size: 14px;
   color: #555;
   line-height: 1.5;
+}
+
+/* === Căn bố cục bài viết trong trang lưu trữ === */
+.post-list-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Ảnh đại diện nằm giữa phần ngày và nội dung */
+.post-thumbnail img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Giữ nguyên phần nội dung */
+.post-list-content {
+  flex: 1;
+}
+
+/* ===== Pagination Style (giống Bootstrap dạng ô vuông) ===== */
+.pagination-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination-wrapper .page-numbers {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 0 3px;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: 500;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.pagination-wrapper .page-numbers:hover {
+    background: #f2f2f2;
+    border-color: #bbb;
+}
+
+.pagination-wrapper .page-numbers.current {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination-wrapper .page-numbers.next,
+.pagination-wrapper .page-numbers.prev {
+    font-weight: 600;
+}
+
+.pagination-wrapper .page-numbers.next:hover,
+.pagination-wrapper .page-numbers.prev:hover {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* ============================================================
+   CUSTOM STYLES - NEW COMMENT FEED DESIGN
+   ============================================================
+   Dùng cho: Giao diện comment mới kiểu social media
+   File: comments.php
+   ============================================================ */
+
+/* Comments Feed Container */
+.comments-feed {
+	margin: 30px 0;
+	padding: 50px 290px;
+}
+
+/* Comment Item */
+.comment-item {
+	display: flex;
+	gap: 15px;
+	margin-bottom: 25px;
+	padding-bottom: 25px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.comment-item:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+/* Comment Avatar */
+.comment-avatar {
+	flex-shrink: 0;
+}
+
+.comment-avatar img {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+/* Comment Content */
+.comment-content {
+	flex: 1;
+}
+
+.comment-author-name {
+	font-weight: 600;
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 5px;
+}
+
+.comment-date {
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 10px;
+}
+
+.comment-text {
+	font-size: 15px;
+	color: #333;
+	line-height: 1.6;
+	margin-bottom: 12px;
+}
+
+/* Comment Actions */
+.comment-actions {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+}
+
+.comment-reply-btn {
+	background-color: #dc3545;
+	color: #fff;
+	border: none;
+	padding: 8px 20px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+}
+
+.comment-reply-btn:hover {
+	background-color: #c82333;
+}
+
+.comment-author-link {
+	color: #666;
+	font-size: 14px;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.comment-author-link:hover {
+	color: #333;
+	text-decoration: underline;
+}
+
+/* Comment Form Wrapper */
+.comment-form-wrapper {
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 760px;
+}
+
+.make-post-form .comment-extra-fields {
+	display: grid;
+	gap: 15px;
+	padding: 0 15px 20px;
+	border-top: 1px solid #ddd;
+}
+
+.make-post-form .comment-extra-field label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 6px;
+	font-size: 14px;
+}
+
+.make-post-form .comment-extra-field input {
+	width: 100%;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 15px;
+	box-sizing: border-box;
+	background-color: #fff;
+}
+
+/* Comment Form Inner - Container chung cho tab và textarea */
+.comment-form-inner {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px !important;
+	position: relative;
+}
+
+/* Make Post Tab */
+.make-post-tab {
+	display: inline-block;
+	padding: 12px 15px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #333;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	border-radius: 5px 5px 0 0;
+	background-color: #fff;
+	position: relative;
+	top: 0;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+/* Make Post Form */
+.make-post-form {
+	position: relative;
+	padding: 0;
+	margin: 0;
+}
+
+/* Hide logged in message and cookies consent */
+.make-post-form .logged-in-as,
+.make-post-form .comment-form-cookies-consent {
+	display: none !important;
+}
+
+.comment-textarea-wrapper {
+	position: relative;
+	padding: 15px;
+	border-top: 1px solid #ddd;
+}
+
+.comment-textarea-wrapper textarea {
+	width: 100%;
+	min-height: 120px;
+	padding: 15px;
+	padding-bottom: 45px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 15px;
+	font-family: inherit;
+	resize: vertical;
+	line-height: 1.5;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+
+.comment-textarea-wrapper textarea:focus {
+	outline: none;
+	border-color: #007bff;
+}
+
+.comment-textarea-wrapper textarea::placeholder {
+	color: #999;
+}
+
+/* Form Submit Wrapper - Hide default submit field but keep hidden fields */
+.form-submit-wrapper {
+	display: none !important;
+}
+
+.form-submit-wrapper-inline {
+	bottom: 25px;
+	right: 25px;
+	margin-left: 480px;
+    margin-top: 10px;
+	padding: 0;
+	z-index: 10;
+}
+
+.form-submit {
+	margin: 0;
+	padding: 0;
+}
+
+.share-btn {
+	background-color: #007bff !important;
+	color: #fff;
+	border: none;
+	padding: 15px 20px !important;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	border-radius: 5px !important;
+	transition: background-color 0.3s ease;
+	text-transform: lowercase !important;
+}
+
+.share-btn:hover {
+	background-color: #0056b3;
+}
+
+.share-btn:active {
+	background-color: #004085;
 }

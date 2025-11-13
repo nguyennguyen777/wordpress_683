@@ -45,12 +45,23 @@ get_header();
                         <h3 class="category-title">Categories</h3>
                         <ul class="category-list">
                             <?php
-                            $categories = get_the_category();
-                            if ( ! empty( $categories ) ) {
-                                foreach ( $categories as $category ) {
-                                    echo '<li><a href="' . esc_url( get_category_link( $category->term_id ) ) . '">' . esc_html( $category->name ) . '</a></li>';
-                                }
-                            }
+							$all_categories = get_categories(
+								array(
+									'hide_empty' => false,
+								)
+							);
+
+							if ( ! empty( $all_categories ) && ! is_wp_error( $all_categories ) ) {
+								$current_categories = wp_get_post_categories( get_the_ID() );
+
+								foreach ( $all_categories as $category ) {
+									$is_current = in_array( $category->term_id, $current_categories, true ) ? ' current-category' : '';
+
+									echo '<li class="category-item' . esc_attr( $is_current ) . '"><a href="' . esc_url( get_category_link( $category->term_id ) ) . '">' . esc_html( $category->name ) . '</a></li>';
+								}
+							} else {
+								echo '<li>' . esc_html__( 'No categories found.', 'twentytwenty' ) . '</li>';
+							}
                             ?>
                         </ul>
                     </div>

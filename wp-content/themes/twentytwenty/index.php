@@ -100,6 +100,9 @@ get_header();
 		<?php
 	}
 
+	$is_search_page = is_search();
+	$is_home_page   = is_home();
+
 	if ( have_posts() ) {
 		?>
 		
@@ -109,7 +112,7 @@ get_header();
 				<?php if ( is_search() && is_active_sidebar( 'sidebar-13' ) ) : ?>
 					<!-- Hiển thị Module 13 (Pages widget) trên trang search -->
 					<?php dynamic_sidebar( 'sidebar-13' ); ?>
-				<?php else : ?>
+					<?php else : ?>
 					<!-- Hiển thị "Xem nhiều" cho các trang khác (archive, home) -->
 					<div class="most-viewed-box">
 						<h2 class="most-viewed-title">Xem nhiều</h2>
@@ -159,30 +162,71 @@ get_header();
 					</div>
 				<?php endif; ?>
 			</aside>
-			
+
 			<!-- Cột giữa: Danh sách bài viết -->
 			<div class="archive-posts-content">
 				<?php
 				$i = 0;
 
-				while ( have_posts() ) {
-					++$i;
-					if ( $i > 1 ) {
-						echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
+				// Nếu là trang Search → Tạo query riêng để hiển thị đúng kết quả và có phân trang
+				if ( is_search() ) {
+					$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+
+					$search_query = new WP_Query( array(
+						'post_type'      => 'post',
+						'posts_per_page' => 5,
+						'paged'          => $paged,
+						's'              => get_search_query()
+					) );
+
+					if ( $search_query->have_posts() ) :
+						while ( $search_query->have_posts() ) :
+							$search_query->the_post();
+							++$i;
+							if ( $i > 1 ) {
+								echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
+							}
+							get_template_part( 'template-parts/content', get_post_type() );
+						endwhile;
+
+						// Hiển thị phân trang giống trang chủ
+						get_template_part( 'template-parts/pagination', null, array(
+							'max_num_pages' => $search_query->max_num_pages
+						) );
+
+					else :
+						echo '<p>Không tìm thấy kết quả nào phù hợp.</p>';
+					endif;
+
+					wp_reset_postdata();
+
+				} else {
+					// Các trang khác (Home, Archive...) giữ nguyên
+					query_posts( array(
+						'posts_per_page' => 3,
+						'paged' => get_query_var('paged') ? get_query_var('paged') : 1
+					) );
+
+					while ( have_posts() ) {
+						++$i;
+						if ( $i > 1 ) {
+							echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
+						}
+						the_post();
+
+						get_template_part( 'template-parts/content', get_post_type() );
 					}
-					the_post();
-
-					get_template_part( 'template-parts/content', get_post_type() );
-
 				}
 				?>
 			</div>
+
 			
 			<!-- Cột phải: Danh sách comment -->
 			<aside class="archive-sidebar-right">
 				<div class="comments-sidebar-box">
 					<h2 class="comments-sidebar-title">Comments</h2>
-					<ul class="comments-sidebar-list">
+					<?php if ( $is_search_page ) : ?>
+					<ul class="comments-sidebar-list search-comments">
 						<?php
 						$recent_comments = get_comments(array(
 							'number' => 3,
@@ -221,14 +265,43 @@ get_header();
 						}
 						?>
 					</ul>
-
+					<?php elseif ( $is_home_page ) : ?>
+					<ul class="comments-sidebar-list home-comments">
+						<?php
+						// Lấy 3 comments mới nhất
+						$recent_comments = get_comments(array(
+							'number' => 3,
+							'status' => 'approve',
+							'post_status' => 'publish',
+							'orderby' => 'comment_date',
+							'order' => 'DESC'
+						));
+						
+						if ( ! empty( $recent_comments ) ) {
+							foreach ( $recent_comments as $comment ) {
+								$comment_text = wp_trim_words( $comment->comment_content, 10, '...' );
+								$comment_link = get_comment_link( $comment );
+								?>
+								<li class="comments-sidebar-item">
+									<a href="<?php echo esc_url( $comment_link ); ?>" class="comments-sidebar-link">
+										<?php echo esc_html( $comment_text ); ?>
+									</a>
+								</li>
+								<?php
+							}
+						} else {
+							echo '<li class="comments-sidebar-item">Chưa có bình luận nào.</li>';
+						}
+						?>
+					</ul>
+					<?php endif; ?>
 				</div>
 			</aside>
 		</div>
 		
 		<?php
 		// Module 15: Hiển thị dưới layout 3 cột khi search có kết quả
-		if ( is_search() && is_active_sidebar( 'sidebar-15' ) ) {
+		if ( $is_search_page && is_active_sidebar( 'sidebar-15' ) ) {
 			?>
 			<div class="search-module-15 section-inner medium">
 				<h2 class="latest-news-title">Latest News</h2>
@@ -242,7 +315,7 @@ get_header();
 		?>
 		
 		<?php
-		} elseif ( is_search() ) {
+		} elseif ( $is_search_page ) {
 			// Khi search không có kết quả, chỉ hiển thị thông báo (Module 4 đã hiển thị ở trên)
 			?>
 			<div class="no-search-results-message section-inner thin">
@@ -252,7 +325,12 @@ get_header();
 		}
 		?>
 
-	<?php get_template_part( 'template-parts/pagination' ); ?>
+	<?php 
+	// Chỉ hiển thị phân trang cho trang Home và Archive, KHÔNG hiển thị ở Search
+	if ( ! is_search() ) {
+		get_template_part( 'template-parts/pagination' );
+	}
+	?>
 
 </main><!-- #site-content -->
 
