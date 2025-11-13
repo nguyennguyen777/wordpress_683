@@ -460,7 +460,11 @@ function twentytwenty_sidebar_registration() {
 		)
 	);
 
-	// === Custom widget Latest News for Search Page Module 15 === //
+}
+
+add_action( 'widgets_init', 'twentytwenty_sidebar_registration' );
+
+// === Custom widget Latest News for Search Page Module 15 === //
 	function latest_news_timeline_widget() {
 		$latest_posts = new WP_Query(array(
 			'posts_per_page' => 3,
@@ -485,10 +489,6 @@ function twentytwenty_sidebar_registration() {
 		}
 	}
 	add_shortcode('latest_news_timeline', 'latest_news_timeline_widget');
-
-}
-
-add_action( 'widgets_init', 'twentytwenty_sidebar_registration' );
 
 /**
  * Enqueue supplemental block editor styles.
